@@ -1,14 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=8 format=3 uid="uid://brynt3jvn4a67"]
 
+[ext_resource type="Script" path="res://src/Scripts/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://Scenes/wall.tscn" id="2_tw0bi"]
 [ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://Scenes/large_robot.tscn" id="3_hd2ba"]
+[ext_resource type="PackedScene" uid="uid://cnad56jjr8srn" path="res://Scenes/lava.tscn" id="3_hgbjy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8ec4"]
+bg_color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ds0g"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gutna"]
+bg_color = Color(0, 0.772549, 0.74902, 1)
 
 [node name="Exterior" type="Node2D"]
+script = ExtResource("1_5n72r")
 
 [node name="Wall" parent="." instance=ExtResource("2_tw0bi")]
 
-[node name="LargeRobot" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("3_hd2ba")]
+[node name="LargeRobot" parent="." node_paths=PackedStringArray("wall", "lava") instance=ExtResource("3_hd2ba")]
 position = Vector2(240, 135)
 wall = NodePath("../Wall")
+lava = NodePath("../Lava")
 
 [node name="Camera2D" type="Camera2D" parent="LargeRobot"]
+
+[node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
+position = Vector2(240, 270)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 7.0
+offset_top = 265.0
+offset_right = 128.0
+offset_bottom = 275.0
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_n8ec4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ds0g")
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+offset_left = 31.0
+offset_top = 265.0
+offset_right = 152.0
+offset_bottom = 275.0
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_n8ec4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gutna")
+value = 100.0
+show_percentage = false
