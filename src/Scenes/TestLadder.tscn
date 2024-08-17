@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh7k5hs2xkdrt"]
+
+[ext_resource type="Texture2D" uid="uid://mgruogldlogl" path="res://icon.svg" id="1_ttnis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pktk1"]
+size = Vector2(8, 128)
+
+[node name="TestLadder" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.0625, 1)
+texture = ExtResource("1_ttnis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_pktk1")
