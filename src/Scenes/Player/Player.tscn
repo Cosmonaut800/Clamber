@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://y1dlwg11ljk6"]
+
+[ext_resource type="Script" path="res://src/Scripts/Player/Player.gd" id="1_a6xmh"]
+[ext_resource type="Texture2D" uid="uid://mgruogldlogl" path="res://icon.svg" id="2_hkthu"]
+[ext_resource type="PackedScene" uid="uid://biiwvkc3pyubk" path="res://src/Scripts/Statemachine/Statemachine.tscn" id="3_vpbtm"]
+[ext_resource type="Script" path="res://src/Scripts/Player/Idle.gd" id="4_jcovj"]
+[ext_resource type="Script" path="res://src/Scripts/Player/Jump.gd" id="5_g5gsh"]
+[ext_resource type="Script" path="res://src/Scripts/Player/Fall.gd" id="6_3iyhk"]
+[ext_resource type="Script" path="res://src/Scripts/Player/Climb.gd" id="7_4vo37"]
+[ext_resource type="Script" path="res://src/Scripts/Player/Move.gd" id="8_gedyr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sb3gx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hkthu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5d3q"]
+size = Vector2(26, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqf4g"]
+size = Vector2(10, 26)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a6xmh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_sb3gx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_w5d3q")
+
+[node name="Statemachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_vpbtm")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Statemachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state", "ladder_detector")]
+script = ExtResource("4_jcovj")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+move_state = NodePath("../Move")
+climb_state = NodePath("../Climb")
+ladder_detector = NodePath("../../LadderDetector")
+
+[node name="Jump" type="Node" parent="Statemachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state", "climb_state")]
+script = ExtResource("5_g5gsh")
+fall_state = NodePath("../Fall")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
+climb_state = NodePath("../Climb")
+
+[node name="Fall" type="Node" parent="Statemachine" node_paths=PackedStringArray("idle_state", "move_state", "climb_state", "jump_state", "ladder_detector")]
+script = ExtResource("6_3iyhk")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+climb_state = NodePath("../Climb")
+jump_state = NodePath("../Jump")
+ladder_detector = NodePath("../../LadderDetector")
+
+[node name="Climb" type="Node" parent="Statemachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+script = ExtResource("7_4vo37")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+
+[node name="Move" type="Node" parent="Statemachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "climb_state")]
+script = ExtResource("8_gedyr")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+climb_state = NodePath("../Climb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gqf4g")
+debug_color = Color(0.976029, 0, 0.414963, 0.42)
+
+[node name="LadderDetector" type="RayCast2D" parent="."]
+scale = Vector2(8, 0.8)
+collision_mask = 4
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
