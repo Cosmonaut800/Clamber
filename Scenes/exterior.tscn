@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://brynt3jvn4a67"]
+
+[ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://Scenes/wall.tscn" id="2_tw0bi"]
+[ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://Scenes/large_robot.tscn" id="3_hd2ba"]
+
+[node name="Exterior" type="Node2D"]
+
+[node name="LargeRobot" parent="." instance=ExtResource("3_hd2ba")]
+position = Vector2(233, 136)
+
+[node name="Wall" parent="." instance=ExtResource("2_tw0bi")]

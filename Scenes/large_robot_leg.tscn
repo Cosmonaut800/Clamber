@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4xqleeujsqa7"]
+
+[ext_resource type="Script" path="res://src/Scripts/large_robot_leg.gd" id="1_o86xu"]
+[ext_resource type="Texture2D" uid="uid://dnrau835ed2q4" path="res://Assets/Sprites/sphere_32x.png" id="1_oskrb"]
+[ext_resource type="Script" path="res://src/Scripts/leg_target.gd" id="2_oqcdp"]
+[ext_resource type="Texture2D" uid="uid://bppe4vj6r3w0x" path="res://Assets/Sprites/checker_32x.png" id="3_ss2x8"]
+
+[node name="LargeRobotLeg" type="Node2D"]
+script = ExtResource("1_o86xu")
+
+[node name="Target" type="Node2D" parent="."]
+script = ExtResource("2_oqcdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Target"]
+texture = ExtResource("3_ss2x8")
+
+[node name="Segment1" type="Sprite2D" parent="."]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment2" type="Sprite2D" parent="Segment1"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment3" type="Sprite2D" parent="Segment1/Segment2"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment4" type="Sprite2D" parent="Segment1/Segment2/Segment3"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment5" type="Sprite2D" parent="Segment1/Segment2/Segment3/Segment4"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment6" type="Sprite2D" parent="Segment1/Segment2/Segment3/Segment4/Segment5"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment7" type="Sprite2D" parent="Segment1/Segment2/Segment3/Segment4/Segment5/Segment6"]
+texture = ExtResource("1_oskrb")
+
+[node name="Segment8" type="Sprite2D" parent="Segment1/Segment2/Segment3/Segment4/Segment5/Segment6/Segment7"]
+texture = ExtResource("1_oskrb")
