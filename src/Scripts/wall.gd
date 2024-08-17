@@ -9,11 +9,13 @@ const SCAFFOLDS_PER_WALL := 3
 @onready var left_scaffolds: Array = [	$Scaffolds/Scaffold1,
 										$Scaffolds/Scaffold2,
 										$Scaffolds/Scaffold3,
-										$Scaffolds/Scaffold4]
+										$Scaffolds/Scaffold4,
+										$Scaffolds/Scaffold5]
 @onready var right_scaffolds: Array = [	$Scaffolds/Scaffold6,
 										$Scaffolds/Scaffold7,
 										$Scaffolds/Scaffold8,
-										$Scaffolds/Scaffold9]
+										$Scaffolds/Scaffold9,
+										$Scaffolds/Scaffold10]
 
 var distance_climbed := 0.0
 var distance_delta := 0.0
@@ -34,19 +36,17 @@ func _ready() -> void:
 		right_scaffolds[i].scale.x = -1.0
 
 func _process(delta: float) -> void:
-	distance_climbed += 100.0 * delta
-	
 	graphics.position.y = fmod(distance_climbed, get_viewport().get_visible_rect().size.y)
 	
 	for scaffold in left_scaffolds:
-		scaffold.position.y += 100.0 * delta
+		scaffold.position.y += distance_delta
 		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range:
 			scaffold.position.y = place_scaffold(left_scaffolds.size()-1)
 			scaffold.randomize_anchor(scaffold_range/4.0)
 			scaffold.set_graphics(randi_range(0, scaffold.graphics.size()-1))
 	
 	for scaffold in right_scaffolds:
-		scaffold.position.y += 100.0 * delta
+		scaffold.position.y += distance_delta
 		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range:
 			scaffold.position.y = place_scaffold(right_scaffolds.size()-1)
 			scaffold.randomize_anchor(scaffold_range/4.0)

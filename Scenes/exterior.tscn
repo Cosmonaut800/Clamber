@@ -10,3 +10,5 @@
 [node name="LargeRobot" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("3_hd2ba")]
 position = Vector2(240, 135)
 wall = NodePath("../Wall")
+
+[node name="Camera2D" type="Camera2D" parent="LargeRobot"]

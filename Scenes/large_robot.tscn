@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3wx4dw5u5doi"]
+[gd_scene load_steps=5 format=3 uid="uid://c3wx4dw5u5doi"]
 
 [ext_resource type="Texture2D" uid="uid://dbol7md7la36h" path="res://Assets/Sprites/sphere_128x.png" id="1_ecfs4"]
 [ext_resource type="Script" path="res://src/Scripts/large_robot.gd" id="1_nec0b"]
 [ext_resource type="PackedScene" uid="uid://c4xqleeujsqa7" path="res://Scenes/large_robot_leg.tscn" id="2_rf0sm"]
+[ext_resource type="Texture2D" uid="uid://dr4p7qtoqm8dv" path="res://Assets/Sprites/checker_orange_32x.png" id="4_o60yk"]
 
 [node name="LargeRobot" type="Node2D"]
 script = ExtResource("1_nec0b")
@@ -23,3 +24,6 @@ position = Vector2(-48, 48)
 [node name="LargeRobotLegDR" parent="." instance=ExtResource("2_rf0sm")]
 position = Vector2(48, 48)
 chirality = "Right"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_o60yk")

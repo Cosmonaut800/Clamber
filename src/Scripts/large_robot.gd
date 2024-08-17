@@ -6,6 +6,7 @@ extends Node2D
 @onready var upper_right_leg := $LargeRobotLegUR
 @onready var lower_left_leg := $LargeRobotLegDL
 @onready var lower_right_leg := $LargeRobotLegDR
+@onready var sprite := $Sprite2D
 
 var target_position := Vector2.ZERO
 var distance_climbed := 0.0
@@ -22,10 +23,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	timer += delta
-	
-	target_position = 0.25*upper_left_leg.anim_target.global_position + 0.25*upper_right_leg.anim_target.global_position + 0.25*lower_left_leg.anim_target.global_position + 0.25*lower_right_leg.anim_target.global_position
-	distance_delta = target_position - global_position
+	target_position = 0.25 * (upper_left_leg.anim_target.global_position + upper_right_leg.anim_target.global_position + lower_left_leg.anim_target.global_position + lower_right_leg.anim_target.global_position)
+	distance_delta = -(target_position - global_position) * delta
+	distance_climbed += distance_delta.y
+	wall.distance_climbed = distance_climbed
+	wall.distance_delta = distance_delta.y
 	
 	upper_left_leg.leg_target.global_position = wall.left_scaffolds[upper_left_leg.target_scaffold].grapple_point.global_position
 	upper_right_leg.leg_target.global_position = wall.right_scaffolds[upper_right_leg.target_scaffold].grapple_point.global_position
@@ -46,10 +48,10 @@ func move_upper_left_leg():
 	var closest_distance := -999999.9
 	
 	for scaffold in wall.left_scaffolds:
-		if scaffold.position.y > upper_left_leg.global_position.y:
+		if scaffold.anchor.global_position.y > upper_left_leg.global_position.y or scaffold.anchor.global_position.y > upper_left_leg.leg_target.global_position.y - 16.0:
 			continue
-		elif scaffold.position.y > closest_distance:
-			closest_distance = scaffold.position.y
+		elif scaffold.anchor.global_position.y > closest_distance:
+			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
 	if next_scaffold and next_scaffold.vacant:
@@ -63,10 +65,10 @@ func move_upper_right_leg():
 	var closest_distance := -999999.9
 	
 	for scaffold in wall.right_scaffolds:
-		if scaffold.position.y > upper_right_leg.global_position.y:
+		if scaffold.anchor.global_position.y > upper_right_leg.global_position.y or scaffold.anchor.global_position.y > upper_right_leg.leg_target.global_position.y - 16.0:
 			continue
-		elif scaffold.position.y > closest_distance:
-			closest_distance = scaffold.position.y
+		elif scaffold.anchor.global_position.y > closest_distance:
+			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
 	if next_scaffold and next_scaffold.vacant:
@@ -80,10 +82,10 @@ func move_lower_left_leg():
 	var closest_distance := -999999.9
 	
 	for scaffold in wall.left_scaffolds:
-		if scaffold.position.y > lower_left_leg.global_position.y:
+		if scaffold.anchor.global_position.y > lower_left_leg.global_position.y or scaffold.anchor.global_position.y > lower_left_leg.leg_target.global_position.y - 16.0:
 			continue
-		elif scaffold.position.y > closest_distance:
-			closest_distance = scaffold.position.y
+		elif scaffold.anchor.global_position.y > closest_distance:
+			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
 	if next_scaffold and next_scaffold.vacant:
@@ -97,10 +99,10 @@ func move_lower_right_leg():
 	var closest_distance := -999999.9
 	
 	for scaffold in wall.right_scaffolds:
-		if scaffold.position.y > lower_right_leg.global_position.y:
+		if scaffold.anchor.global_position.y > lower_right_leg.global_position.y or scaffold.anchor.global_position.y > lower_right_leg.leg_target.global_position.y - 16.0:
 			continue
-		elif scaffold.position.y > closest_distance:
-			closest_distance = scaffold.position.y
+		elif scaffold.anchor.global_position.y > closest_distance:
+			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
 	if next_scaffold and next_scaffold.vacant:

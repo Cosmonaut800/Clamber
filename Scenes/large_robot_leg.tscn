@@ -10,6 +10,7 @@ script = ExtResource("1_o86xu")
 [node name="LegTarget" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="LegTarget"]
+visible = false
 texture = ExtResource("3_ss2x8")
 
 [node name="AnimationTarget" type="Node2D" parent="."]
