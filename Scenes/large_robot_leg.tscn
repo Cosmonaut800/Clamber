@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4xqleeujsqa7"]
+[gd_scene load_steps=4 format=3 uid="uid://c4xqleeujsqa7"]
 
 [ext_resource type="Script" path="res://src/Scripts/large_robot_leg.gd" id="1_o86xu"]
 [ext_resource type="Texture2D" uid="uid://dnrau835ed2q4" path="res://Assets/Sprites/sphere_32x.png" id="1_oskrb"]
-[ext_resource type="Script" path="res://src/Scripts/leg_target.gd" id="2_oqcdp"]
 [ext_resource type="Texture2D" uid="uid://bppe4vj6r3w0x" path="res://Assets/Sprites/checker_32x.png" id="3_ss2x8"]
 
 [node name="LargeRobotLeg" type="Node2D"]
 script = ExtResource("1_o86xu")
 
-[node name="Target" type="Node2D" parent="."]
-script = ExtResource("2_oqcdp")
+[node name="LegTarget" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Target"]
+[node name="Sprite2D" type="Sprite2D" parent="LegTarget"]
 texture = ExtResource("3_ss2x8")
+
+[node name="AnimationTarget" type="Node2D" parent="."]
 
 [node name="Segment1" type="Sprite2D" parent="."]
 texture = ExtResource("1_oskrb")

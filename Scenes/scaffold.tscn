@@ -7,17 +7,17 @@
 [node name="Scaffold" type="Node2D"]
 script = ExtResource("1_v37gu")
 
-[node name="GrapplePoint" type="Node2D" parent="."]
-position = Vector2(61, 0)
+[node name="Anchor" type="Node2D" parent="."]
 
-[node name="Graphics1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(61, 0)
-scale = Vector2(4.8125, 1)
+[node name="GrapplePoint" type="Node2D" parent="Anchor"]
+position = Vector2(17, 0)
+
+[node name="Graphics1" type="Sprite2D" parent="Anchor"]
+position = Vector2(15.5, 0)
+scale = Vector2(1.96875, 0.375)
 texture = ExtResource("2_d5kjh")
 
-[node name="Graphics2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(61, 0)
-scale = Vector2(4.8125, 1)
+[node name="Graphics2" type="Sprite2D" parent="Anchor"]
+position = Vector2(15, 0)
+scale = Vector2(1.9375, 0.375)
 texture = ExtResource("3_01n2k")

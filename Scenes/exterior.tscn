@@ -5,7 +5,8 @@
 
 [node name="Exterior" type="Node2D"]
 
-[node name="LargeRobot" parent="." instance=ExtResource("3_hd2ba")]
-position = Vector2(233, 136)
-
 [node name="Wall" parent="." instance=ExtResource("2_tw0bi")]
+
+[node name="LargeRobot" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("3_hd2ba")]
+position = Vector2(240, 135)
+wall = NodePath("../Wall")
