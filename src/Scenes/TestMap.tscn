@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1o3c48tbgpki"]
+
+[ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="1_lpjbo"]
+[ext_resource type="PackedScene" uid="uid://c6xypnbk2psl4" path="res://src/Scenes/TestGround.tscn" id="2_uul8w"]
+
+[node name="TestMap" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_lpjbo")]
+position = Vector2(59, 164)
+
+[node name="TestGround" parent="." instance=ExtResource("2_uul8w")]
+position = Vector2(242, 260)
+scale = Vector2(4, 1)
