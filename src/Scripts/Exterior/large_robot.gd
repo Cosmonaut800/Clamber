@@ -14,7 +14,7 @@ var target_position := Vector2.ZERO
 var distance_climbed := 0.0
 var distance_delta := Vector2.ZERO
 
-var health := 100.0
+var health := 20.0
 var shield := 100.0
 var fuel := 100.0
 var ammo := 100.0
@@ -25,6 +25,11 @@ func _ready() -> void:
 	upper_right_leg.target_scaffold = 1
 	lower_left_leg.target_scaffold = 0
 	lower_right_leg.target_scaffold = 0
+	
+	wall.left_scaffolds[0].vacant = false
+	wall.left_scaffolds[1].vacant = false
+	wall.right_scaffolds[0].vacant = false
+	wall.right_scaffolds[1].vacant = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,10 +50,7 @@ func _process(delta: float) -> void:
 		move_lower_right_leg()
 	
 	if lava.hitbox.overlaps_body(hitbox):
-		if shield > 0.0:
-			shield -= lava.shield_damage * delta
-		elif health > 0.0:
-			health -= lava.health_damage * delta
+		deal_damage(lava.shield_damage * delta)
 	
 	if health < 0.0:
 		die()
@@ -63,6 +65,16 @@ func _process(delta: float) -> void:
 
 func die():
 	dead_sprite.set_visible(true)
+
+func deal_damage(amount: float):
+	if shield > 0.0:
+		shield -= amount
+		if shield <= 0.0:
+			shield = -0.01
+	elif health > 0.0:
+		health -= amount
+		if health <= 0.0:
+			health = -0.01
 
 func update_distance(delta: float):
 	target_position = 0.25 * (upper_left_leg.anim_target.global_position + upper_right_leg.anim_target.global_position + lower_left_leg.anim_target.global_position + lower_right_leg.anim_target.global_position)

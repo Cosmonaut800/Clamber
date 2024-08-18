@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://cp3m8gx4tesvi"]
+[gd_scene load_steps=5 format=3 uid="uid://cp3m8gx4tesvi"]
 
-[node name="Enemy" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://db4hhtflk84a0" path="res://Assets/Sprites/enemy_placeholder.png" id="1_6amop"]
+[ext_resource type="Script" path="res://src/Scripts/Enemy/enemy.gd" id="1_hy8ly"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vpr77"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kc6a1"]
+
+[node name="Enemy" type="RigidBody2D"]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_vpr77")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_hy8ly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kc6a1")
+
+[node name="Graphics" type="Sprite2D" parent="."]
+texture = ExtResource("1_6amop")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

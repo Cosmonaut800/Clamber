@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1y0oyeuchr1v"]
+
+[ext_resource type="Texture2D" uid="uid://b4kw81ktqjk38" path="res://Assets/Sprites/autoturret.png" id="1_0ijpc"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/auto_turret.gd" id="1_gdg1n"]
+
+[node name="AutoTurret" type="Node2D"]
+script = ExtResource("1_gdg1n")
+
+[node name="Graphics" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ijpc")

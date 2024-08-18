@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=21 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
 [ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
 [ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
+[ext_resource type="PackedScene" uid="uid://cp3m8gx4tesvi" path="res://src/Scenes/Enemy/enemy.tscn" id="18_kbhuv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
 
@@ -26,6 +27,10 @@ axis_stretch_vertical = 1
 
 [node name="Exterior" type="Node2D"]
 script = ExtResource("1_5n72r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(480, 270)
+color = Color(1, 0, 1, 1)
 
 [node name="Wall" parent="." instance=ExtResource("2_tw0bi")]
 position = Vector2(-64, 0)
@@ -39,7 +44,7 @@ lava = NodePath("../Lava")
 offset = Vector2(64, 1.45519e-11)
 
 [node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
-position = Vector2(176, 270)
+position = Vector2(176, 480)
 
 [node name="UI" type="Control" parent="."]
 z_index = 10
@@ -68,7 +73,8 @@ offset_left = 352.0
 offset_top = 150.0
 offset_right = 400.0
 offset_bottom = 198.0
-value = 75.0
+max_value = 20.0
+value = 15.0
 fill_mode = 4
 radial_initial_angle = 225.0
 radial_fill_degrees = 270.0
@@ -154,3 +160,18 @@ offset_top = 251.0
 offset_right = 33.0
 offset_bottom = 259.0
 texture = ExtResource("17_3r2t5")
+
+[node name="Enemy" parent="." instance=ExtResource("18_kbhuv")]
+position = Vector2(95, 31)
+
+[node name="Enemy2" parent="." instance=ExtResource("18_kbhuv")]
+position = Vector2(95, 31)
+
+[node name="Enemy3" parent="." instance=ExtResource("18_kbhuv")]
+position = Vector2(95, 31)
+
+[node name="Enemy4" parent="." instance=ExtResource("18_kbhuv")]
+position = Vector2(95, 31)
+
+[node name="Enemy5" parent="." instance=ExtResource("18_kbhuv")]
+position = Vector2(95, 31)
