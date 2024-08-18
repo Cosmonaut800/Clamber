@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://brynt3jvn4a67"]
 
-[ext_resource type="Script" path="res://src/Scripts/exterior.gd" id="1_5n72r"]
-[ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://Scenes/wall.tscn" id="2_tw0bi"]
-[ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://Scenes/large_robot.tscn" id="3_hd2ba"]
-[ext_resource type="PackedScene" uid="uid://cnad56jjr8srn" path="res://Scenes/lava.tscn" id="3_hgbjy"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
+[ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
+[ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://src/Scenes/Exterior/large_robot.tscn" id="3_hd2ba"]
+[ext_resource type="PackedScene" uid="uid://cnad56jjr8srn" path="res://src/Scenes/Exterior/lava.tscn" id="3_hgbjy"]
 [ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="5_j5qpp"]
 [ext_resource type="Texture2D" uid="uid://dsb3joirc44yi" path="res://Assets/Sprites/ring_red_48x.png" id="5_mjain"]
 [ext_resource type="Texture2D" uid="uid://c1n5hwf4vlrg7" path="res://Assets/Sprites/ring_blue_48x.png" id="5_yw66h"]

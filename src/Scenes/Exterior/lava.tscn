@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnad56jjr8srn"]
 
-[ext_resource type="Script" path="res://src/Scripts/lava.gd" id="1_c2rq2"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/lava.gd" id="1_c2rq2"]
 [ext_resource type="Texture2D" uid="uid://jxercklg3pis" path="res://Assets/Sprites/danger.png" id="1_eoq4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvm8s"]
