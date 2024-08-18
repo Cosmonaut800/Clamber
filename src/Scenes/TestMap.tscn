@@ -6,11 +6,11 @@
 
 [node name="TestMap" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_lpjbo")]
-position = Vector2(59, 164)
-
 [node name="TestLadder" parent="." instance=ExtResource("3_oryq0")]
 position = Vector2(148, 134)
+
+[node name="Player" parent="." instance=ExtResource("1_lpjbo")]
+position = Vector2(59, 164)
 
 [node name="TestGround" parent="." instance=ExtResource("2_uul8w")]
 position = Vector2(242, 260)

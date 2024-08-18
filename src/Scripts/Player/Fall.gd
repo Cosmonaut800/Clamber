@@ -14,6 +14,7 @@ var ladder_detector: RayCast2D
 var timer: Timer = $"../../Timer"
 
 func enter() -> void:
+	super()
 	timer.start()
 
 func exit() -> void:

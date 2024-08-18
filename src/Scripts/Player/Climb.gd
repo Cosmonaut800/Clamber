@@ -25,6 +25,11 @@ func process_physics(_delta: float) -> State:
 	parent.velocity.y = movement
 
 	parent.move_and_slide()
+	
+	if input == 0:
+		parent.animation_player.stop()
+	else:
+		parent.animation_player.play()
 
 	if parent.is_on_floor():
 		return idle_state
