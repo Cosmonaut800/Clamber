@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5nvul8ordavc"]
+
+[ext_resource type="Script" path="res://src/Scripts/scaffold.gd" id="1_v37gu"]
+[ext_resource type="Texture2D" uid="uid://d33ifwm1aivhb" path="res://Assets/Sprites/checker_blue_32x.png" id="2_d5kjh"]
+[ext_resource type="Texture2D" uid="uid://dr4p7qtoqm8dv" path="res://Assets/Sprites/checker_orange_32x.png" id="3_01n2k"]
+
+[node name="Scaffold" type="Node2D"]
+script = ExtResource("1_v37gu")
+
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="GrapplePoint" type="Node2D" parent="Anchor"]
+position = Vector2(17, 0)
+
+[node name="Graphics1" type="Sprite2D" parent="Anchor"]
+position = Vector2(15.5, 0)
+scale = Vector2(1.96875, 0.375)
+texture = ExtResource("2_d5kjh")
+
+[node name="Graphics2" type="Sprite2D" parent="Anchor"]
+position = Vector2(15, 0)
+scale = Vector2(1.9375, 0.375)
+texture = ExtResource("3_01n2k")
