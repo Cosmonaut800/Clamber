@@ -25,3 +25,9 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	self.in_ladder_area = false
+
+func _on_room_detector_area_entered(area):
+	var collision_shape : CollisionShape2D = area.get_node("CollisionShape2D")
+	var size: Vector2 = collision_shape.shape.extents*2
+	
+	Global.change_room(collision_shape.global_position, size)
