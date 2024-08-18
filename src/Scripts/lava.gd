@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var hitbox := $Hitbox
 
+var shield_damage := 20.0 #damage to shield per second
+var health_damage := 100.0 #damage to health per second
+
 var offscreen_timer := 0.0
 var distance_delta := 0.0
 

@@ -1,52 +1,156 @@
-[gd_scene load_steps=8 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=20 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://Scenes/wall.tscn" id="2_tw0bi"]
 [ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://Scenes/large_robot.tscn" id="3_hd2ba"]
 [ext_resource type="PackedScene" uid="uid://cnad56jjr8srn" path="res://Scenes/lava.tscn" id="3_hgbjy"]
+[ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="5_j5qpp"]
+[ext_resource type="Texture2D" uid="uid://dsb3joirc44yi" path="res://Assets/Sprites/ring_red_48x.png" id="5_mjain"]
+[ext_resource type="Texture2D" uid="uid://c1n5hwf4vlrg7" path="res://Assets/Sprites/ring_blue_48x.png" id="5_yw66h"]
+[ext_resource type="Texture2D" uid="uid://cl21pit8gi6q4" path="res://Assets/Sprites/status_nameplate_health.png" id="6_fokg3"]
+[ext_resource type="Texture2D" uid="uid://dai2ylnjxj05e" path="res://Assets/Sprites/ring_green_48x.png" id="7_ek1md"]
+[ext_resource type="Texture2D" uid="uid://b63t8fglcyjj6" path="res://Assets/Sprites/status_nameplate_shield.png" id="8_8wdjc"]
+[ext_resource type="Texture2D" uid="uid://ba4mqw5opu17s" path="res://Assets/Sprites/ring_orange_48x.png" id="8_d86qy"]
+[ext_resource type="Texture2D" uid="uid://b1gou8juvg3iv" path="res://Assets/Sprites/status_nameplate_fuel.png" id="10_oisxq"]
+[ext_resource type="Texture2D" uid="uid://dqrf0bqt1r2vk" path="res://Assets/Sprites/status_nameplate_ammo.png" id="12_icew6"]
+[ext_resource type="Texture2D" uid="uid://jxercklg3pis" path="res://Assets/Sprites/danger.png" id="14_tb24t"]
+[ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
+[ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
+[ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8ec4"]
-bg_color = Color(0.344076, 0.344076, 0.344076, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ds0g"]
-bg_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gutna"]
-bg_color = Color(0, 0.772549, 0.74902, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a13pi"]
+texture = ExtResource("14_tb24t")
+axis_stretch_vertical = 1
 
 [node name="Exterior" type="Node2D"]
 script = ExtResource("1_5n72r")
 
 [node name="Wall" parent="." instance=ExtResource("2_tw0bi")]
+position = Vector2(-64, 0)
 
 [node name="LargeRobot" parent="." node_paths=PackedStringArray("wall", "lava") instance=ExtResource("3_hd2ba")]
-position = Vector2(240, 135)
+position = Vector2(176, 135)
 wall = NodePath("../Wall")
 lava = NodePath("../Lava")
 
 [node name="Camera2D" type="Camera2D" parent="LargeRobot"]
+offset = Vector2(64, 1.45519e-11)
 
 [node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
-position = Vector2(240, 270)
+position = Vector2(176, 270)
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 7.0
-offset_top = 265.0
-offset_right = 128.0
-offset_bottom = 275.0
-rotation = -1.57079
-theme_override_styles/background = SubResource("StyleBoxFlat_n8ec4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_8ds0g")
-value = 100.0
+[node name="UI" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CockpitWindow" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 8.0
+offset_right = 471.0
+offset_bottom = 140.0
+color = Color(0, 1, 0, 1)
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 150.0
+offset_right = 400.0
+offset_bottom = 198.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("5_j5qpp")
+texture_over = ExtResource("6_fokg3")
+texture_progress = ExtResource("5_mjain")
+
+[node name="ShieldBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 150.0
+offset_right = 464.0
+offset_bottom = 198.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("5_j5qpp")
+texture_over = ExtResource("8_8wdjc")
+texture_progress = ExtResource("5_yw66h")
+
+[node name="FuelBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 205.0
+offset_right = 400.0
+offset_bottom = 253.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("5_j5qpp")
+texture_over = ExtResource("10_oisxq")
+texture_progress = ExtResource("7_ek1md")
+
+[node name="AmmoBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 205.0
+offset_right = 464.0
+offset_bottom = 253.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("5_j5qpp")
+texture_over = ExtResource("12_icew6")
+texture_progress = ExtResource("8_d86qy")
+
+[node name="DistanceBar" type="ProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_se7e3")
+theme_override_styles/fill = SubResource("StyleBoxTexture_a13pi")
+max_value = 256.0
+value = 50.0
+fill_mode = 3
 show_percentage = false
 
-[node name="ShieldBar" type="ProgressBar" parent="."]
-offset_left = 31.0
-offset_top = 265.0
-offset_right = 152.0
-offset_bottom = 275.0
-rotation = -1.57079
-theme_override_styles/background = SubResource("StyleBoxFlat_n8ec4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gutna")
-value = 100.0
-show_percentage = false
+[node name="DistanceMeter" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+texture = ExtResource("15_2ftun")
+
+[node name="YouMarker" type="TextureRect" parent="UI/DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 248.0
+offset_right = 33.0
+offset_bottom = 256.0
+texture = ExtResource("16_tuiu2")
+
+[node name="DangerMarker" type="TextureRect" parent="UI/DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 251.0
+offset_right = 33.0
+offset_bottom = 259.0
+texture = ExtResource("17_3r2t5")

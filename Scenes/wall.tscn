@@ -10,22 +10,38 @@ script = ExtResource("1_cr5ek")
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="Left1" type="Sprite2D" parent="Graphics"]
+z_index = 5
 position = Vector2(64, 135)
 scale = Vector2(4, 8.4375)
 texture = ExtResource("1_hu6pw")
 
 [node name="Left2" type="Sprite2D" parent="Graphics"]
+z_index = 5
 position = Vector2(64, -135)
 scale = Vector2(4, 8.4375)
 texture = ExtResource("1_hu6pw")
 
 [node name="Right1" type="Sprite2D" parent="Graphics"]
+z_index = 5
 position = Vector2(416, 135)
 scale = Vector2(4, 8.4375)
 texture = ExtResource("1_hu6pw")
 
 [node name="Right2" type="Sprite2D" parent="Graphics"]
+z_index = 5
 position = Vector2(416, -135)
+scale = Vector2(4, 8.4375)
+texture = ExtResource("1_hu6pw")
+
+[node name="ExtremeRight1" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(544, 135)
+scale = Vector2(4, 8.4375)
+texture = ExtResource("1_hu6pw")
+
+[node name="ExtremeRight2" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(544, -135)
 scale = Vector2(4, 8.4375)
 texture = ExtResource("1_hu6pw")
 

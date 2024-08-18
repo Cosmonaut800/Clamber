@@ -1,8 +1,8 @@
 extends Node2D
 
 #The X coordinates of the visible surface of the walls, used for placing scaffolds.
-const LEFT_WALL_X := 128.0
-const RIGHT_WALL_X := 352.0
+const LEFT_WALL_X := 64.0
+const RIGHT_WALL_X := 288.0
 const SCAFFOLDS_PER_WALL := 3
 
 @onready var graphics := $Graphics
@@ -40,14 +40,14 @@ func _process(delta: float) -> void:
 	
 	for scaffold in left_scaffolds:
 		scaffold.position.y += distance_delta
-		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range:
+		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range and scaffold.vacant:
 			scaffold.position.y = place_scaffold(left_scaffolds.size()-1)
 			scaffold.randomize_anchor(scaffold_range/4.0)
 			scaffold.set_graphics(randi_range(0, scaffold.graphics.size()-1))
 	
 	for scaffold in right_scaffolds:
 		scaffold.position.y += distance_delta
-		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range:
+		if scaffold.position.y > get_viewport().get_visible_rect().size.y + scaffold_range and scaffold.vacant:
 			scaffold.position.y = place_scaffold(right_scaffolds.size()-1)
 			scaffold.randomize_anchor(scaffold_range/4.0)
 			scaffold.set_graphics(randi_range(0, scaffold.graphics.size()-1))
