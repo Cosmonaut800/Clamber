@@ -12,7 +12,7 @@ var climb_state: State
 func enter() -> void:
 	super()
 	parent.has_jumped = true
-	parent.velocity.y -= parent.jump_force
+	parent.velocity.y -= 300
 
 func process_input(_event: InputEvent) -> State:
 		
@@ -23,7 +23,7 @@ func process_input(_event: InputEvent) -> State:
 
 func process_physics(_delta: float) -> State:
 	parent.velocity.y += gravity * _delta
-	
+	print("Velocity Y: ", parent.velocity.y, " | Gravity: ", gravity, " | Delta: ", _delta)
 	if parent.velocity.y > 0:
 		return fall_state
 	
