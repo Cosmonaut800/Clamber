@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1y0oyeuchr1v"]
+
+[ext_resource type="Texture2D" uid="uid://b4kw81ktqjk38" path="res://Assets/Sprites/autoturret.png" id="1_0ijpc"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/auto_turret.gd" id="1_gdg1n"]
+[ext_resource type="Texture2D" uid="uid://bt4r1f4nw8f0u" path="res://Assets/Sprites/bullet.png" id="3_ordya"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bgjyx"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1.45519e-11, -16, 1.45519e-11)
+emission_shape = 3
+emission_box_extents = Vector3(4, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(1.45519e-11, -1, 1.45519e-11)
+spread = 3.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(1.45519e-11, 1.45519e-11, 1.45519e-11)
+
+[node name="AutoTurret" type="Node2D"]
+script = ExtResource("1_gdg1n")
+
+[node name="Bullets" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_bgjyx")
+texture = ExtResource("3_ordya")
+speed_scale = 1.5
+collision_base_size = 0.0
+
+[node name="Graphics" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ijpc")
+
+[node name="KillTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

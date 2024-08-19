@@ -8,18 +8,34 @@ extends Node2D
 @onready var upper_right_leg := $LargeRobotLegUR
 @onready var lower_left_leg := $LargeRobotLegDL
 @onready var lower_right_leg := $LargeRobotLegDR
+@onready var autoturret := $AutoTurret
 @onready var dead_sprite := $DeadSprite
 
 var target_position := Vector2.ZERO
 var distance_climbed := 0.0
 var distance_delta := Vector2.ZERO
 
+var enemies: Array[RigidBody2D] = []
+
+var health := 20.0
+var shield := 100.0
+var fuel := 100.0
+var ammo := 100.0
+
+signal kill_enemy(index: int)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	upper_left_leg.target_scaffold = 1
 	upper_right_leg.target_scaffold = 1
 	lower_left_leg.target_scaffold = 0
 	lower_right_leg.target_scaffold = 0
+	
+	wall.left_scaffolds[0].vacant = false
+	wall.left_scaffolds[1].vacant = false
+	wall.right_scaffolds[0].vacant = false
+	wall.right_scaffolds[1].vacant = false
+	
+	autoturret.enemies = enemies
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,24 +56,32 @@ func _process(delta: float) -> void:
 		move_lower_right_leg()
 	
 	if lava.hitbox.overlaps_body(hitbox):
-		if Global.shield > 0.0:
-			Global.shield -= lava.shield_damage * delta
-		elif Global.health > 0.0:
-			Global.health -= lava.health_damage * delta
+		deal_damage(lava.shield_damage * delta)
 	
 	if Global.health < 0.0:
 		die()
 	
-	Global.fuel -= 5.0 * delta
+	Global.fuel -= 1.0 * delta
 	if Global.fuel < 0.0:
-		Global.fuel = -0.1
+		Global.fuel = -0.01
 	
-	Global.ammo -= 1.0 * delta
-	if Global.ammo < 0.0:
-		Global.ammo = -0.1
+	if autoturret.is_firing:
+		Global.ammo -= 10.0 * delta
+		if Global.ammo < 0.0:
+			Global.ammo = -0.01
 
 func die():
 	dead_sprite.set_visible(true)
+
+func deal_damage(amount: float):
+	if shield > 0.0:
+		shield -= amount
+		if shield <= 0.0:
+			shield = -0.01
+	elif health > 0.0:
+		health -= amount
+		if health <= 0.0:
+			health = -0.01
 
 func update_distance(delta: float):
 	target_position = 0.25 * (upper_left_leg.anim_target.global_position + upper_right_leg.anim_target.global_position + lower_left_leg.anim_target.global_position + lower_right_leg.anim_target.global_position)
@@ -66,6 +90,13 @@ func update_distance(delta: float):
 	wall.distance_climbed = distance_climbed
 	wall.distance_delta = distance_delta.y
 	lava.distance_delta = distance_delta.y
+
+func add_enemies(new_enemies: Array[RigidBody2D]):
+	#enemies = new_enemies
+	autoturret.enemies = new_enemies
+
+func remove_enemy(index):
+	autoturret.enemies.remove_at(index)
 
 func move_upper_left_leg():
 	var next_scaffold
@@ -138,3 +169,7 @@ func move_lower_right_leg():
 		lower_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[lower_right_leg.target_scaffold].vacant = false
 		lower_right_leg.leg_target.position = next_scaffold.grapple_point.position
+
+
+func _on_auto_turret_kill_enemy(index: int) -> void:
+	kill_enemy.emit(index)
