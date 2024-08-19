@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ftf4ulcd11v"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ftf4ulcd11v"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/wall.gd" id="1_cr5ek"]
 [ext_resource type="Texture2D" uid="uid://bppe4vj6r3w0x" path="res://Assets/Sprites/checker_32x.png" id="1_hu6pw"]
+[ext_resource type="Texture2D" uid="uid://der2ddvktpjme" path="res://Assets/Sprites/exterior_background.png" id="2_i8xus"]
 [ext_resource type="PackedScene" uid="uid://b5nvul8ordavc" path="res://src/Scenes/Exterior/scaffold.tscn" id="3_e1gq8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n71du"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3u0y0"]
+size = Vector2(128, 810)
 
 [node name="Wall" type="Node2D"]
 script = ExtResource("1_cr5ek")
@@ -45,6 +52,14 @@ position = Vector2(544, -135)
 scale = Vector2(4, 8.4375)
 texture = ExtResource("1_hu6pw")
 
+[node name="Background1" type="Sprite2D" parent="Graphics"]
+position = Vector2(240, 135)
+texture = ExtResource("2_i8xus")
+
+[node name="Background2" type="Sprite2D" parent="Graphics"]
+position = Vector2(240, -135)
+texture = ExtResource("2_i8xus")
+
 [node name="Scaffolds" type="Node2D" parent="."]
 
 [node name="Scaffold1" parent="Scaffolds" instance=ExtResource("3_e1gq8")]
@@ -76,3 +91,22 @@ position = Vector2(0, -306)
 
 [node name="Scaffold10" parent="Scaffolds" instance=ExtResource("3_e1gq8")]
 position = Vector2(0, -306)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_n71du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(64, 135)
+shape = SubResource("RectangleShape2D_3u0y0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 4
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_n71du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(415, 135)
+shape = SubResource("RectangleShape2D_3u0y0")
