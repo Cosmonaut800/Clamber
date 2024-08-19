@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		fuel = -0.01
 	
 	if autoturret.is_firing:
-		ammo -= 5.0 * delta
+		ammo -= 10.0 * delta
 		if ammo < 0.0:
 			ammo = -0.01
 

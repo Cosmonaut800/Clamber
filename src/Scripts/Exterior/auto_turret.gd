@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var large_robot: Node2D
 
 @onready var bullets := $Bullets
 @onready var kill_timer := $KillTimer
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 	if enemies:
 		target_rotation = global_position.direction_to(enemies[0].global_position).angle() + PI/2.0
 		
-		if target_rotation - rotation < 0.1:
+		if target_rotation - rotation < 0.1 and large_robot.ammo > 0.0:
 			if kill_timer.is_stopped():
 				kill_timer.start()
 			is_firing = true

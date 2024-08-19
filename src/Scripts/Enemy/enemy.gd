@@ -14,5 +14,6 @@ func _physics_process(_delta: float) -> void:
 	apply_central_force(force)
 
 func _on_body_entered(body: Node) -> void:
-	apply_impulse(100.0 * (global_position - body.global_position).normalized())
-	body.deal_damage(5.0)
+	if body.collision_layer == 1:
+		apply_impulse(100.0 * (global_position - body.global_position).normalized())
+		body.deal_damage(2.0)

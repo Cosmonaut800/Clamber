@@ -49,4 +49,5 @@ func kill_enemy(index: int = 0):
 func _on_spawn_timer_timeout() -> void:
 	spawn_timer.wait_time = randf_range(4.0, 8.0)
 	spawn_timer.start()
-	spawn_enemies(randi_range(2, 5), Vector2(176 + randf_range(-50.0, 50.0), 0), Vector2.DOWN)
+	if enemies.size() < 5:
+		spawn_enemies(randi_range(2, 5), Vector2(176 + randf_range(-50.0, 50.0), 0), Vector2.DOWN)
