@@ -61,13 +61,11 @@ shape = SubResource("RectangleShape2D_c5x8n")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-14.25, 7.75)
 rotation = -0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dxvyt")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(14.25, 7.75)
 rotation = 0.784334
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bmb5t")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

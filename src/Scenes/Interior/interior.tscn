@@ -1,13 +1,12 @@
-
 [gd_scene load_steps=16 format=4 uid="uid://c4nh7368drqi8"]
 
-[ext_resource type="Script" path="res://src/Scenes/Interior/interior.gd" id="1_1ule8"]
 [ext_resource type="TileSet" uid="uid://5bf2keg1pooi" path="res://src/Scenes/Interior/interior.tres" id="1_hic03"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/interior.gd" id="1_lcdlv"]
 [ext_resource type="TileSet" uid="uid://curmyyoldjdg5" path="res://src/Scenes/Interior/interior-floor.tres" id="2_7qunx"]
 [ext_resource type="Texture2D" uid="uid://c3hwkdlj6ljsc" path="res://Assets/Sprites/interior-tile-map.png" id="3_mfr47"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="4_jvbjx"]
-[ext_resource type="PackedScene" uid="uid://d34miuaa1edwl" path="res://src/Scenes/Interior/Door.tscn" id="7_yjh5g"]
-[ext_resource type="PackedScene" uid="uid://3pa1x2bmvijr" path="res://src/Scenes/Player/player_camera.tscn" id="8_hhi64"]
+[ext_resource type="PackedScene" path="res://src/Scenes/Interior/Door.tscn" id="7_yjh5g"]
+[ext_resource type="PackedScene" path="res://src/Scenes/Player/player_camera.tscn" id="8_hhi64"]
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="9_6odw1"]
 [ext_resource type="PackedScene" uid="uid://cmqshwf3am01x" path="res://src/Scenes/UI/gui_overlay.tscn" id="9_8gr0a"]
 
@@ -106,7 +105,7 @@ size = Vector2(448, 240)
 size = Vector2(273, 160)
 
 [node name="Interior" type="Node2D"]
-script = ExtResource("1_1ule8")
+script = ExtResource("1_lcdlv")
 
 [node name="Background" type="Node2D" parent="."]
 
