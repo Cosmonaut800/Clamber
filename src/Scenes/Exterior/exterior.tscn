@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=22 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
 [ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
 [ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
+[ext_resource type="PackedScene" uid="uid://c8w0p3ydygc4l" path="res://src/Scenes/Exterior/cockpit.tscn" id="18_cpof2"]
+[ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="19_6mleg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
 
@@ -36,7 +38,7 @@ wall = NodePath("../Wall")
 lava = NodePath("../Lava")
 
 [node name="Camera2D" type="Camera2D" parent="LargeRobot"]
-offset = Vector2(64, 1.45519e-11)
+offset = Vector2(96, 1.45519e-11)
 
 [node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
 position = Vector2(176, 480)
@@ -53,14 +55,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="CockpitWindow" type="ColorRect" parent="UI"]
-layout_mode = 0
-offset_left = 333.0
-offset_top = 8.0
-offset_right = 471.0
-offset_bottom = 140.0
-color = Color(0, 1, 0, 1)
 
 [node name="HealthBar" type="TextureProgressBar" parent="UI"]
 layout_mode = 0
@@ -161,5 +155,16 @@ wait_time = 4.0
 one_shot = true
 autostart = true
 
+[node name="Cockpit" parent="." instance=ExtResource("18_cpof2")]
+z_index = 20
+position = Vector2(411, 92)
+
+[node name="Player" parent="." instance=ExtResource("19_6mleg")]
+z_index = 20
+position = Vector2(397, 124)
+collision_layer = 33
+collision_mask = 17
+
 [connection signal="kill_enemy" from="LargeRobot" to="." method="kill_enemy"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="button_activated" from="Cockpit" to="." method="_on_cockpit_button_activated"]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=4 uid="uid://c8w0p3ydygc4l"]
+
+[ext_resource type="TileSet" uid="uid://5bf2keg1pooi" path="res://src/Scenes/Interior/interior.tres" id="1_asumi"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/cockpit.gd" id="1_de0f0"]
+[ext_resource type="TileSet" uid="uid://csu5sc1o345f" path="res://src/Scenes/Interior/interior-floor.tres" id="2_7neng"]
+[ext_resource type="PackedScene" uid="uid://b7s6wvpasfodc" path="res://src/Scenes/Exterior/cockpit_button.tscn" id="4_spex4"]
+[ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="6_dd1ut"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_og72b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4aj58"]
+size = Vector2(32, 64)
+
+[node name="Cockpit" type="Node2D"]
+script = ExtResource("1_de0f0")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="wall" type="TileMapLayer" parent="Background"]
+tile_map_data = PackedByteArray("AAD8/wAAAAAMAAMAAAD8/wEAAAAMAAQAAAD8/wIAAAANAAMAAAD9/wAAAAAMAAIAAAD9/wEAAAAMAAMAAAD9/wIAAAAMAAQAAAD+/wAAAAANAAIAAAD+/wEAAAANAAMAAAD+/wIAAAANAAQAAAD//wAAAAAIAAIAAAD//wEAAAAIAAMAAAD//wIAAAAIAAQAAAAAAAAAAAAIAAIAAAAAAAEAAAAIAAMAAAAAAAIAAAAIAAQAAAABAAAAAAAJAAIAAAABAAEAAAAJAAMAAAABAAIAAAAJAAQAAAACAAAAAAAKAAIAAAACAAEAAAAKAAMAAAACAAIAAAAKAAQAAAADAAAAAAAJAAQAAAADAAEAAAAKAAQAAAADAAIAAAAJAAMAAAAAAP3/AAAIAAQAAAAAAP7/AAAGAAUAAAAAAP//AAAIAAQAAAABAP3/AAAJAAIAAAABAP7/AAAJAAMAAAABAP//AAAJAAQAAAACAP3/AAAKAAIAAAACAP7/AAAKAAMAAAACAP//AAAKAAQAAAADAP3/AAAJAAQAAAADAP7/AAAJAAIAAAADAP//AAAJAAMAAAD8//3/AAANAAQAAAD8//7/AAAMAAQAAAD8////AAAMAAIAAAD9//3/AAAMAAIAAAD9//7/AAAEAAUAAAD9////AAAMAAQAAAD+//3/AAANAAIAAAD+//7/AAANAAMAAAD+////AAANAAQAAAD///3/AAAIAAQAAAD///7/AAALAAQAAAD/////AAAIAAQAAAD8//z/AAANAAMAAAD9//z/AAAMAAQAAAD+//z/AAANAAQAAAD///z/AAAIAAMAAAAAAPz/AAAIAAMAAAABAPz/AAAJAAQAAAACAPz/AAAKAAQAAAADAPz/AAAJAAMAAAAEAAAAAAAKAAQAAAAEAAEAAAAJAAMAAAAEAAIAAAAJAAQAAAAEAP3/AAAKAAQAAAAEAP7/AAAKAAIAAAAEAP//AAAKAAMAAAAEAPz/AAAKAAMAAAD7//v/AAAMAAIAAAD7//z/AAAMAAMAAAD7//3/AAAMAAQAAAD7//7/AAANAAMAAAD7/wAAAAAMAAQAAAD7/wEAAAANAAMAAAD7/wIAAAANAAQAAAD7////AAANAAQAAAD9//v/AAAMAAMAAAD+//v/AAANAAMAAAD8//v/AAANAAIAAAABAPv/AAAJAAMAAAACAPv/AAAKAAMAAAADAPv/AAAJAAIAAAAEAPv/AAAKAAIAAAAFAAAAAAAIAAIAAAAFAAEAAAAIAAMAAAAFAAIAAAAIAAQAAAD///v/AAAIAAIAAAAAAPv/AAAIAAIAAAAFAP3/AAAIAAIAAAAFAP7/AAAIAAMAAAAFAP//AAAIAAQAAAAFAPv/AAAIAAMAAAAFAPz/AAAIAAQAAAD6//v/AAAIAAMAAAD6//z/AAAIAAQAAAD6//3/AAAIAAIAAAD6//7/AAAIAAMAAAD6////AAAIAAQAAAD6/wAAAAAIAAIAAAD6/wEAAAAIAAMAAAD6/wIAAAAIAAQAAAA=")
+tile_set = ExtResource("1_asumi")
+collision_enabled = false
+
+[node name="platforms" type="TileMapLayer" parent="Background"]
+tile_map_data = PackedByteArray("AAD8/wIAAAADAAUAAAD9/wIAAAAEAAUAAAD+/wIAAAAFAAUAAAD//wIAAAAGAAUAAAAAAAIAAAADAAUAAAABAAIAAAAEAAUAAAACAAIAAAAFAAUAAAADAAIAAAAGAAUAAAABAP7/AAAFAAUAAAACAP7/AAAGAAUAAAD8//7/AAAEAAUAAAADAP7/AAAFAAUAAAD7/wIAAAAFAAUAAAAEAAIAAAAFAAUAAAD7//7/AAADAAUAAAAEAP7/AAAGAAUAAAD6/wIAAAAEAAUAAAAFAAIAAAAEAAUAAAAFAP7/AAAHAAUAAAD6//7/AAACAAUAAAA=")
+tile_set = ExtResource("2_7neng")
+
+[node name="props" type="TileMapLayer" parent="Background"]
+tile_map_data = PackedByteArray("AAABAAAAAAADAAMAAAABAAEAAAADAAQAAAD+////AAAAAAIAAAD+/wAAAAAAAAMAAAD+/wEAAAAAAAQAAAD/////AAABAAIAAAD//wAAAAABAAMAAAD//wEAAAABAAQAAAD+//7/AAAAAAEAAAD///7/AAABAAEAAAD+//3/AAAAAAAAAAD///3/AAABAAAAAAAAAAAAAAACAAMAAAAAAAEAAAACAAQAAAA=")
+tile_set = ExtResource("2_7neng")
+
+[node name="CockpitBorders" type="Node2D" parent="."]
+
+[node name="BorderFloor" type="StaticBody2D" parent="CockpitBorders"]
+position = Vector2(0, 48)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CockpitBorders/BorderFloor"]
+shape = SubResource("WorldBoundaryShape2D_og72b")
+
+[node name="BorderLeftWall" type="StaticBody2D" parent="CockpitBorders"]
+position = Vector2(-97, -14)
+rotation = 1.5708
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CockpitBorders/BorderLeftWall"]
+shape = SubResource("WorldBoundaryShape2D_og72b")
+
+[node name="BorderRightWall" type="StaticBody2D" parent="CockpitBorders"]
+position = Vector2(97, -14)
+rotation = -1.5708
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CockpitBorders/BorderRightWall"]
+shape = SubResource("WorldBoundaryShape2D_og72b")
+
+[node name="BorderCeiling" type="StaticBody2D" parent="CockpitBorders"]
+position = Vector2(0, -81)
+rotation = -3.14159
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CockpitBorders/BorderCeiling"]
+shape = SubResource("WorldBoundaryShape2D_og72b")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="ButtonUL" parent="Buttons" instance=ExtResource("4_spex4")]
+position = Vector2(-64, -40)
+
+[node name="ButtonUR" parent="Buttons" instance=ExtResource("4_spex4")]
+position = Vector2(64, -40)
+
+[node name="ButtonDL" parent="Buttons" instance=ExtResource("4_spex4")]
+position = Vector2(-64, 24)
+
+[node name="ButtonDR" parent="Buttons" instance=ExtResource("4_spex4")]
+position = Vector2(64, 24)
+
+[node name="LadderHitbox" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderHitbox"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_4aj58")
+
+[node name="onewaycollision" parent="." instance=ExtResource("6_dd1ut")]
+position = Vector2(-16, -32)
+
+[connection signal="activated" from="Buttons/ButtonUL" to="." method="_on_button_ul_activated"]
+[connection signal="activated" from="Buttons/ButtonUR" to="." method="_on_button_ur_activated"]
+[connection signal="activated" from="Buttons/ButtonDL" to="." method="_on_button_dl_activated"]
+[connection signal="activated" from="Buttons/ButtonDR" to="." method="_on_button_dr_activated"]
