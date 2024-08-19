@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=31 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
@@ -19,6 +19,152 @@
 [ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
 [ext_resource type="PackedScene" uid="uid://c8w0p3ydygc4l" path="res://src/Scenes/Exterior/cockpit.tscn" id="18_cpof2"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0b534"]
+animation = &"zoom_in"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4exuc"]
+animation = &"zoom_in"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ew7o"]
+advance_mode = 2
+advance_condition = &"zoom_in"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r4kii"]
+advance_mode = 2
+advance_condition = &"zoom_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_td14p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eniu2"]
+states/Start/position = Vector2(459, 151)
+states/zoom_in/node = SubResource("AnimationNodeAnimation_0b534")
+states/zoom_in/position = Vector2(382, 57)
+states/zoom_out/node = SubResource("AnimationNodeAnimation_4exuc")
+states/zoom_out/position = Vector2(555, 57)
+transitions = ["zoom_in", "zoom_out", SubResource("AnimationNodeStateMachineTransition_2ew7o"), "zoom_out", "zoom_in", SubResource("AnimationNodeStateMachineTransition_r4kii"), "Start", "zoom_out", SubResource("AnimationNodeStateMachineTransition_td14p")]
+
+[sub_resource type="Animation" id="Animation_rpj8d"]
+resource_name = "zoom_in"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11), Vector2(1.45519e-11, -32)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 5, -0.0545263, -3.85603, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 5, -0.051378, -3.83394, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_tvlsh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qbvvj"]
+resource_name = "zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wapo"]
+_data = {
+"RESET": SubResource("Animation_tvlsh"),
+"zoom_in": SubResource("Animation_rpj8d"),
+"zoom_out": SubResource("Animation_qbvvj")
+}
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a13pi"]
@@ -38,6 +184,18 @@ lava = NodePath("../Lava")
 
 [node name="Camera2D" type="Camera2D" parent="LargeRobot"]
 offset = Vector2(96, 1.45519e-11)
+
+[node name="AnimationTree" type="AnimationTree" parent="LargeRobot/Camera2D"]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_eniu2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/zoom_in = false
+parameters/conditions/zoom_out = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LargeRobot/Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_4wapo")
+}
 
 [node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
 position = Vector2(176, 480)
