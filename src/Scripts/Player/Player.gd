@@ -1,9 +1,9 @@
 extends Entity
 
 @export
-var jump_force : int = 300
+var jump_force := 300
 
-var has_jumped: bool = false
+var has_jumped := false
 
 var in_ladder_area := false
 

@@ -23,7 +23,6 @@ func process_input(_event: InputEvent) -> State:
 
 func process_physics(_delta: float) -> State:
 	parent.velocity.y += gravity * _delta
-	print("Velocity Y: ", parent.velocity.y, " | Gravity: ", gravity, " | Delta: ", _delta)
 	if parent.velocity.y > 0:
 		return fall_state
 	
