@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw7d6impd15hj"]
+
+[sub_resource type="GDScript" id="GDScript_0on8x"]
+script/source = "extends CanvasLayer
+
+const main = preload(\"res://src/Scenes/Interior/interior.tscn\")
+const turret_bay = preload(\"res://src/Scenes/Interior/TurretBay.tscn\")
+
+@onready var animation_player = $AnimationPlayer
+@onready var color_rect = $ColorRect
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	color_rect.hide()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func chage_room(room_path):
+	color_rect.show()
+	animation_player.play(\"fade_in\")
+	await animation_player.animation_finished
+	
+	var room = room_path.instantiate()
+	get_tree().get_root().get_child(0).free()
+	get_tree().get_root().add_child(room)
+	
+	animation_player.play(\"fade_out\")
+	await animation_player.animation_finished
+	color_rect.hide()
+	
+"
+
+[sub_resource type="Animation" id="Animation_jpl3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vo4k3"]
+resource_name = "fade_in"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x14ki"]
+resource_name = "fade_out"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74sgf"]
+_data = {
+"RESET": SubResource("Animation_jpl3b"),
+"fade_in": SubResource("Animation_vo4k3"),
+"fade_out": SubResource("Animation_x14ki")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+script = SubResource("GDScript_0on8x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 480.0
+offset_bottom = 277.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_74sgf")
+}

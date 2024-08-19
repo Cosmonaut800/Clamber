@@ -316,20 +316,21 @@ position = Vector2(-0.5, -17)
 shape = SubResource("RectangleShape2D_gqf4g")
 debug_color = Color(0.976029, 0, 0.414963, 0.42)
 
-[node name="LadderDetector" type="RayCast2D" parent="."]
+[node name="RoomDetector" type="Area2D" parent="."]
 scale = Vector2(8, 0.8)
-collision_mask = 4
-
-[node name="RoomDetector" type="Area2D" parent="LadderDetector"]
 collision_layer = 128
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector/RoomDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
 position = Vector2(-0.1875, -21.25)
 shape = SubResource("RectangleShape2D_llriv")
+
+[node name="LadderDetector" type="RayCast2D" parent="."]
+scale = Vector2(8, 0.8)
+collision_mask = 4
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="area_entered" from="LadderDetector/RoomDetector" to="." method="_on_room_detector_area_entered"]
+[connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]

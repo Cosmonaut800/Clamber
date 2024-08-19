@@ -2,7 +2,9 @@ extends Camera2D
 
 var follow_smoothing: float = 0.2
 var smoothing: float
+@onready
 var current_room_center: Vector2
+@onready
 var current_room_size: Vector2
 var hud_height = 16*2
 @onready

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5rj65ofaxjxd"]
+
+[ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="1_gy5tc"]
+[ext_resource type="Texture2D" uid="uid://cl21pit8gi6q4" path="res://Assets/Sprites/status_nameplate_health.png" id="2_3dorj"]
+[ext_resource type="Texture2D" uid="uid://dsb3joirc44yi" path="res://Assets/Sprites/ring_red_48x.png" id="3_f4r17"]
+
+[node name="HealthBar" type="TextureProgressBar"]
+offset_left = -24.0
+offset_top = -23.0
+offset_right = 24.0
+offset_bottom = 25.0
+max_value = 20.0
+value = 15.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("1_gy5tc")
+texture_over = ExtResource("2_3dorj")
+texture_progress = ExtResource("3_f4r17")

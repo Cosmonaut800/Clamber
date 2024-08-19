@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://di8c8qceau67x"]
+
+[ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="1_tmulc"]
+[ext_resource type="Texture2D" uid="uid://b63t8fglcyjj6" path="res://Assets/Sprites/status_nameplate_shield.png" id="2_u7gqk"]
+[ext_resource type="Texture2D" uid="uid://c1n5hwf4vlrg7" path="res://Assets/Sprites/ring_blue_48x.png" id="3_crjww"]
+
+[node name="ShieldBar" type="TextureProgressBar"]
+offset_left = -25.0
+offset_top = -24.0
+offset_right = 23.0
+offset_bottom = 24.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("1_tmulc")
+texture_over = ExtResource("2_u7gqk")
+texture_progress = ExtResource("3_crjww")

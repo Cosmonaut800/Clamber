@@ -9,8 +9,6 @@ var fall_state: State
 @export
 var climb_state: State
 
-@onready
-var ladder = get_tree().current_scene.find_child("Ladder")
 
 var prevInput
 
