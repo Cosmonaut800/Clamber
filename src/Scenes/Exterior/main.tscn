@@ -1,16 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2xxwflvyephd"]
+[gd_scene load_steps=15 format=3 uid="uid://b2xxwflvyephd"]
 
 [ext_resource type="Shader" path="res://src/Shaders/alpha_transparency.gdshader" id="1_0vom4"]
 [ext_resource type="PackedScene" uid="uid://brynt3jvn4a67" path="res://src/Scenes/Exterior/exterior.tscn" id="1_ih0r2"]
+[ext_resource type="PackedScene" uid="uid://c4nh7368drqi8" path="res://src/Scenes/Interior/interior.tscn" id="1_n4jvh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_46k0f"]
 shader = ExtResource("1_0vom4")
-shader_parameter/userAlpha = 1.0
+shader_parameter/userAlpha = 1.45519e-11
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4ni2m"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ftu5o"]
+animation = &"fade_out"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t85o1"]
+animation = &"fade_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljec8"]
+advance_mode = 2
+advance_condition = &"fade_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_35p74"]
+advance_mode = 2
+advance_condition = &"fade_in"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6kl8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yo4x4"]
+states/fade_in/node = SubResource("AnimationNodeAnimation_ftu5o")
+states/fade_in/position = Vector2(507, 145)
+states/fade_out/node = SubResource("AnimationNodeAnimation_t85o1")
+states/fade_out/position = Vector2(507, 69)
+transitions = ["fade_in", "fade_out", SubResource("AnimationNodeStateMachineTransition_ljec8"), "fade_out", "fade_in", SubResource("AnimationNodeStateMachineTransition_35p74"), "Start", "fade_in", SubResource("AnimationNodeStateMachineTransition_s6kl8")]
+graph_offset = Vector2(0, 40)
+
+[sub_resource type="Animation" id="Animation_oynt8"]
+resource_name = "fade_out"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:material:shader_parameter/userAlpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.45519e-11]
+}
+
+[sub_resource type="Animation" id="Animation_oqwsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:material:shader_parameter/userAlpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.45519e-11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8uq3f"]
+_data = {
+"RESET": SubResource("Animation_oqwsm"),
+"fade_out": SubResource("Animation_oynt8")
+}
+
 [node name="Main" type="Node2D"]
+
+[node name="Interior" parent="." instance=ExtResource("1_n4jvh")]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+
+[node name="Exterior" parent="SubViewport" instance=ExtResource("1_ih0r2")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_46k0f")
@@ -18,8 +92,16 @@ offset_right = 480.0
 offset_bottom = 270.0
 texture = SubResource("ViewportTexture_4ni2m")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(480, 270)
+[node name="AnimationTree" type="AnimationTree" parent="TextureRect"]
+active = false
+root_node = NodePath("../../SubViewport")
+tree_root = SubResource("AnimationNodeStateMachine_yo4x4")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/fade_in = false
+parameters/conditions/fade_out = false
 
-[node name="Exterior" parent="SubViewport" instance=ExtResource("1_ih0r2")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+root_node = NodePath("../../SubViewport")
+libraries = {
+"": SubResource("AnimationLibrary_8uq3f")
+}

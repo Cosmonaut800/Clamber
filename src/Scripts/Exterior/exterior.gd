@@ -62,3 +62,9 @@ func _on_cockpit_button_activated(index: int) -> void:
 			large_robot.move_lower_left_leg()
 		cockpit.BUTTON.DR:
 			large_robot.move_lower_right_leg()
+
+func activate_exterior():
+	pass
+
+func deactivate_exterior():
+	pass
