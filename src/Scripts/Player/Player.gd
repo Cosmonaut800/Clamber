@@ -9,9 +9,13 @@ var in_ladder_area := false
 
 var is_active := true
 
+@export
+var camera : Camera2D
+
 # Called when the node enters the scene tee for the first time.
 func _ready() -> void:
 	state_machine.init(self)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
