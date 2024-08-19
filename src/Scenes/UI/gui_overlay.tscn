@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmqshwf3am01x"]
+
+[ext_resource type="Script" path="res://src/Scripts/UI/gui_overlay.gd" id="1_081pn"]
+[ext_resource type="PackedScene" uid="uid://dcroef6gk2jkj" path="res://src/Scenes/UI/ammo_bar.tscn" id="1_gpb14"]
+[ext_resource type="PackedScene" uid="uid://datddm4c4r4qe" path="res://src/Scenes/UI/fuel_bar.tscn" id="2_wn335"]
+[ext_resource type="PackedScene" uid="uid://c5rj65ofaxjxd" path="res://src/Scenes/UI/health_bar.tscn" id="3_sygm1"]
+[ext_resource type="PackedScene" uid="uid://di8c8qceau67x" path="res://src/Scenes/UI/shield_bar.tscn" id="4_s1uat"]
+
+[node name="GUIOverlay" type="CanvasLayer"]
+script = ExtResource("1_081pn")
+
+[node name="UI" type="GridContainer" parent="."]
+offset_left = 271.0
+offset_top = 218.0
+offset_right = 475.0
+offset_bottom = 266.0
+columns = 4
+
+[node name="AmmoBar" parent="UI" instance=ExtResource("1_gpb14")]
+layout_mode = 2
+
+[node name="FuelBar" parent="UI" instance=ExtResource("2_wn335")]
+layout_mode = 2
+
+[node name="HealthBar" parent="UI" instance=ExtResource("3_sygm1")]
+layout_mode = 2
+
+[node name="ShieldBar" parent="UI" instance=ExtResource("4_s1uat")]
+layout_mode = 2

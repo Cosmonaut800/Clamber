@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+
+
 @onready
 var player: CharacterBody2D = get_tree().current_scene.get_node("Player")
 @onready
@@ -17,5 +19,5 @@ func _physics_process(delta):
 	else:
 		collision_shape.disabled = false
 
-	if Input.is_action_just_pressed("move_down") and ladder_detector.is_colliding():
+	if Input.is_action_pressed("move_down") and ladder_detector.is_colliding():
 		collision_shape.disabled = true

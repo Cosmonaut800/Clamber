@@ -11,9 +11,10 @@ func switch_scene(res_path):
 	call_deferred("_deferred_switch_scene", res_path)
 
 func _deferred_switch_scene(res_path):
-	current_scene.free()
+	var room = current_scene.get_node("Room")
+	print(room.get_child(0).to_string())
+	room.get_child(0).queue_free()
 	var scene = load(res_path)
 	current_scene = scene.instantiate()
-	get_tree().root.add_child(current_scene)
-	get_tree().current_scene = current_scene
+	room.add_child(current_scene)
 	

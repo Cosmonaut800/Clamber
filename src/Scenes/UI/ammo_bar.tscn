@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcroef6gk2jkj"]
+
+[ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="1_8l53n"]
+[ext_resource type="Texture2D" uid="uid://dqrf0bqt1r2vk" path="res://Assets/Sprites/status_nameplate_ammo.png" id="2_4y1sy"]
+[ext_resource type="Texture2D" uid="uid://ba4mqw5opu17s" path="res://Assets/Sprites/ring_orange_48x.png" id="3_6qg1r"]
+
+[node name="AmmoBar" type="TextureProgressBar"]
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = 25.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("1_8l53n")
+texture_over = ExtResource("2_4y1sy")
+texture_progress = ExtResource("3_6qg1r")

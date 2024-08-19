@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://src/Scripts/global.gd"
-SceneSwitcher="*res://src/Scripts/scene_switcher.gd"
 
 [display]
 
