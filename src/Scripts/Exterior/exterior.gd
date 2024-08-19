@@ -24,11 +24,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	healthbar.set_value_no_signal(large_robot.health)
-	shieldbar.set_value_no_signal(large_robot.shield)
-	fuelbar.set_value_no_signal(large_robot.fuel)
-	ammobar.set_value_no_signal(large_robot.ammo)
-	you_marker.position.y = 244.0 - large_robot.distance_climbed / DISTANCE_FACTOR
+	healthbar.set_value_no_signal(Global.health)
+	shieldbar.set_value_no_signal(Global.shield)
+	fuelbar.set_value_no_signal(Global.fuel)
+	ammobar.set_value_no_signal(Global.ammo)
+	you_marker.position.y = 248.0 - large_robot.distance_climbed / DISTANCE_FACTOR
 	distancebar.value = (large_robot.distance_climbed - lava.position.y + 270.0) / DISTANCE_FACTOR
 	danger_marker.position.y = 251.0 - distancebar.value
 

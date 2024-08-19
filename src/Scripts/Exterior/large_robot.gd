@@ -23,7 +23,6 @@ var fuel := 100.0
 var ammo := 100.0
 
 signal kill_enemy(index: int)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	upper_left_leg.target_scaffold = 1
@@ -59,17 +58,17 @@ func _process(delta: float) -> void:
 	if lava.hitbox.overlaps_body(hitbox):
 		deal_damage(lava.shield_damage * delta)
 	
-	if health < 0.0:
+	if Global.health < 0.0:
 		die()
 	
-	fuel -= 1.0 * delta
-	if fuel < 0.0:
-		fuel = -0.01
+	Global.fuel -= 1.0 * delta
+	if Global.fuel < 0.0:
+		Global.fuel = -0.01
 	
 	if autoturret.is_firing:
-		ammo -= 10.0 * delta
-		if ammo < 0.0:
-			ammo = -0.01
+		Global.ammo -= 10.0 * delta
+		if Global.ammo < 0.0:
+			Global.ammo = -0.01
 
 func die():
 	dead_sprite.set_visible(true)
@@ -112,7 +111,7 @@ func move_upper_left_leg():
 			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
-	if next_scaffold and next_scaffold.vacant and fuel > 0.0:
+	if next_scaffold and next_scaffold.vacant and Global.fuel > 0.0:
 		wall.left_scaffolds[upper_left_leg.target_scaffold].vacant = true
 		upper_left_leg.target_scaffold = wall.left_scaffolds.find(next_scaffold)
 		wall.left_scaffolds[upper_left_leg.target_scaffold].vacant = false
@@ -131,7 +130,7 @@ func move_upper_right_leg():
 			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
-	if next_scaffold and next_scaffold.vacant and fuel > 0.0:
+	if next_scaffold and next_scaffold.vacant and Global.fuel > 0.0:
 		wall.right_scaffolds[upper_right_leg.target_scaffold].vacant = true
 		upper_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[upper_right_leg.target_scaffold].vacant = false
@@ -148,7 +147,7 @@ func move_lower_left_leg():
 			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
-	if next_scaffold and next_scaffold.vacant and fuel > 0.0:
+	if next_scaffold and next_scaffold.vacant and Global.fuel > 0.0:
 		wall.left_scaffolds[lower_left_leg.target_scaffold].vacant = true
 		lower_left_leg.target_scaffold = wall.left_scaffolds.find(next_scaffold)
 		wall.left_scaffolds[upper_left_leg.target_scaffold].vacant = false
@@ -165,7 +164,7 @@ func move_lower_right_leg():
 			closest_distance = scaffold.anchor.global_position.y
 			next_scaffold = scaffold
 	
-	if next_scaffold and next_scaffold.vacant and fuel > 0.0:
+	if next_scaffold and next_scaffold.vacant and Global.fuel > 0.0:
 		wall.right_scaffolds[lower_right_leg.target_scaffold].vacant = true
 		lower_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[lower_right_leg.target_scaffold].vacant = false

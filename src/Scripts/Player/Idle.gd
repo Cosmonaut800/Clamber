@@ -15,7 +15,6 @@ var ladder_detector: RayCast2D
 func enter() -> void:
 	super()
 	parent.jump_force = 300
-	
 
 func process_input(_event: InputEvent) -> State:
 	
