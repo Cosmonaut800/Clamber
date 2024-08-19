@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=16 format=4 uid="uid://c4nh7368drqi8"]
 
 [ext_resource type="Script" path="res://src/Scenes/Interior/interior.gd" id="1_1ule8"]

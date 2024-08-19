@@ -7,6 +7,8 @@ var has_jumped := false
 
 var in_ladder_area := false
 
+var is_active := true
+
 @export
 var camera : Camera2D
 

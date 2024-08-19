@@ -93,7 +93,7 @@ position = Vector2(0, -306)
 position = Vector2(0, -306)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_n71du")
 
@@ -103,7 +103,7 @@ shape = SubResource("RectangleShape2D_3u0y0")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(1, 0)
-collision_layer = 4
+collision_layer = 8
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_n71du")
 

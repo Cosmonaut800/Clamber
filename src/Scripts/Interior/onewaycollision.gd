@@ -3,7 +3,7 @@ extends StaticBody2D
 
 
 @onready
-var player: CharacterBody2D = get_tree().current_scene.get_node("Player")
+var player: CharacterBody2D = $"../Player"
 @onready
 var ladder_detector = player.get_node("LadderDetector")
 @onready
@@ -14,7 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if player.position.y > position.y:
+	if player.global_position.y > global_position.y:
 		collision_shape.disabled = true
 	else:
 		collision_shape.disabled = false

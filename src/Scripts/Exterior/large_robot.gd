@@ -46,14 +46,14 @@ func _process(delta: float) -> void:
 	lower_left_leg.leg_target.global_position = wall.left_scaffolds[lower_left_leg.target_scaffold].grapple_point.global_position
 	lower_right_leg.leg_target.global_position = wall.right_scaffolds[lower_right_leg.target_scaffold].grapple_point.global_position
 	
-	if Input.is_action_just_pressed("ui_up"):
-		move_upper_right_leg()
-	if Input.is_action_just_pressed("ui_left"):
-		move_upper_left_leg()
-	if Input.is_action_just_pressed("ui_down"):
-		move_lower_left_leg()
-	if Input.is_action_just_pressed("ui_right"):
-		move_lower_right_leg()
+	#if Input.is_action_just_pressed("ui_up"):
+		#move_upper_right_leg()
+	#if Input.is_action_just_pressed("ui_left"):
+		#move_upper_left_leg()
+	#if Input.is_action_just_pressed("ui_down"):
+		#move_lower_left_leg()
+	#if Input.is_action_just_pressed("ui_right"):
+		#move_lower_right_leg()
 	
 	if lava.hitbox.overlaps_body(hitbox):
 		deal_damage(lava.shield_damage * delta)
