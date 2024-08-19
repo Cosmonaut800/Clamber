@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @onready
-var player: CharacterBody2D = get_tree().current_scene.get_node("Player")
+var player: CharacterBody2D = $"../Player"
 @onready
 var ladder_detector = player.get_node("LadderDetector")
 @onready
