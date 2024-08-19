@@ -47,3 +47,5 @@ shape = SubResource("CircleShape2D_w72pf")
 
 [node name="AutoTurret" parent="." instance=ExtResource("6_g1247")]
 position = Vector2(28, 4)
+
+[connection signal="kill_enemy" from="AutoTurret" to="." method="_on_auto_turret_kill_enemy"]

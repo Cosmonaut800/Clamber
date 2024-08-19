@@ -8,16 +8,21 @@ extends Node2D
 @onready var upper_right_leg := $LargeRobotLegUR
 @onready var lower_left_leg := $LargeRobotLegDL
 @onready var lower_right_leg := $LargeRobotLegDR
+@onready var autoturret := $AutoTurret
 @onready var dead_sprite := $DeadSprite
 
 var target_position := Vector2.ZERO
 var distance_climbed := 0.0
 var distance_delta := Vector2.ZERO
 
+var enemies: Array[RigidBody2D] = []
+
 var health := 20.0
 var shield := 100.0
 var fuel := 100.0
 var ammo := 100.0
+
+signal kill_enemy(index: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +35,8 @@ func _ready() -> void:
 	wall.left_scaffolds[1].vacant = false
 	wall.right_scaffolds[0].vacant = false
 	wall.right_scaffolds[1].vacant = false
+	
+	autoturret.enemies = enemies
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -55,13 +62,14 @@ func _process(delta: float) -> void:
 	if health < 0.0:
 		die()
 	
-	fuel -= 5.0 * delta
+	fuel -= 1.0 * delta
 	if fuel < 0.0:
-		fuel = -0.1
+		fuel = -0.01
 	
-	ammo -= 1.0 * delta
-	if ammo < 0.0:
-		ammo = -0.1
+	if autoturret.is_firing:
+		ammo -= 5.0 * delta
+		if ammo < 0.0:
+			ammo = -0.01
 
 func die():
 	dead_sprite.set_visible(true)
@@ -83,6 +91,13 @@ func update_distance(delta: float):
 	wall.distance_climbed = distance_climbed
 	wall.distance_delta = distance_delta.y
 	lava.distance_delta = distance_delta.y
+
+func add_enemies(new_enemies: Array[RigidBody2D]):
+	#enemies = new_enemies
+	autoturret.enemies = new_enemies
+
+func remove_enemy(index):
+	autoturret.enemies.remove_at(index)
 
 func move_upper_left_leg():
 	var next_scaffold
@@ -155,3 +170,7 @@ func move_lower_right_leg():
 		lower_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[lower_right_leg.target_scaffold].vacant = false
 		lower_right_leg.leg_target.position = next_scaffold.grapple_point.position
+
+
+func _on_auto_turret_kill_enemy(index: int) -> void:
+	kill_enemy.emit(index)
