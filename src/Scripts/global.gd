@@ -5,7 +5,7 @@ var player:= get_tree().current_scene.get_node("Player")
 @onready
 var camera:= get_tree().current_scene.get_node("PlayerCamera")
 
-var health := 100.0
+var health := 20.0
 var shield := 100.0
 var fuel := 100.0
 var ammo := 100.0

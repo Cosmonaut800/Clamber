@@ -17,10 +17,10 @@ var distance_delta := Vector2.ZERO
 
 var enemies: Array[RigidBody2D] = []
 
-var health := 20.0
-var shield := 100.0
-var fuel := 100.0
-var ammo := 100.0
+#var health := 20.0
+#var shield := 100.0
+#var fuel := 100.0
+#var ammo := 100.0
 
 signal kill_enemy(index: int)
 # Called when the node enters the scene tree for the first time.
@@ -74,14 +74,14 @@ func die():
 	dead_sprite.set_visible(true)
 
 func deal_damage(amount: float):
-	if shield > 0.0:
-		shield -= amount
-		if shield <= 0.0:
-			shield = -0.01
-	elif health > 0.0:
-		health -= amount
-		if health <= 0.0:
-			health = -0.01
+	if Global.shield > 0.0:
+		Global.shield -= amount
+		if Global.shield <= 0.0:
+			Global.shield = -0.01
+	elif Global.health > 0.0:
+		Global.health -= amount
+		if Global.health <= 0.0:
+			Global.health = -0.01
 
 func update_distance(delta: float):
 	target_position = 0.25 * (upper_left_leg.anim_target.global_position + upper_right_leg.anim_target.global_position + lower_left_leg.anim_target.global_position + lower_right_leg.anim_target.global_position)
