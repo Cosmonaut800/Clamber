@@ -9,12 +9,14 @@ var pressed_up := false
 func _ready():
 	
 	direction_animations.hide()
-	if Global.shield < Global.MAX_SHIELD:
-		direction_animations.show()
+	#if Global.shield < Global.MAX_SHIELD:
+	#	direction_animations.show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.shield < Global.MAX_SHIELD:
+		direction_animations.show()
 	
 	if Global.shield <= 0:
 		shield_generator_animation.stop()

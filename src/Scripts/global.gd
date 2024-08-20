@@ -14,6 +14,10 @@ var shield := 100.0
 var fuel := 100.0
 var ammo := 100.0
 
+var distance_bar_value := 0.0
+var you_marker_position := 0.0
+var danger_marker_position := 0.0
+
 func increase_stat(stat: float, value: float):
 	stat += value
 	print(stat)

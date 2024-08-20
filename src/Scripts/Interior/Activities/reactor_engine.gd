@@ -20,7 +20,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(timer.time_left)
 	if Global.fuel < Global.MAX_FUEL and timer.time_left == 0 and not player.has_old_rad_rod or player.has_new_rad_rod:
 		interaction_sign.show()
 	else:

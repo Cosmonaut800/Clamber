@@ -2,9 +2,12 @@ extends RigidBody2D
 
 const ROBOT_POSITION := Vector2(176.0, 135.0)
 
+@onready var graphics := $Graphics
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	apply_impulse(Vector2(randf_range(-80.0, 80.0), randf_range(-80.0, 80.0)))
+	graphics.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

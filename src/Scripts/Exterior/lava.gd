@@ -18,4 +18,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if started:
-		position.y += -20.0 * delta + distance_delta
+		position.y += -7.5 * delta + distance_delta

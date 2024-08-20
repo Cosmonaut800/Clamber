@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/reactor_rod_shelf.gd" id="1_1uqi7"]
 [ext_resource type="Texture2D" uid="uid://b6gr1lenp6wd2" path="res://Assets/Sprites/radiator_rod_shelf.png" id="1_hfy6d"]
-[ext_resource type="PackedScene" uid="uid://bwby5isj74vfm" path="res://src/Scenes/Misc/interaction_sign.tscn" id="2_2iy8c"]
+[ext_resource type="PackedScene" path="res://src/Scenes/Misc/interaction_sign.tscn" id="2_2iy8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnvlj"]
 size = Vector2(70, 46)

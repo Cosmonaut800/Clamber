@@ -28,8 +28,10 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	player_in_range = true
+	if body.name == "Player":
+		player_in_range = true
 
 
 func _on_body_exited(body):
-	player_in_range = false
+	if body.name == "Player":
+		player_in_range = false
