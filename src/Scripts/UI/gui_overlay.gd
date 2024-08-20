@@ -1,17 +1,33 @@
 extends CanvasLayer
 
+@onready var player = get_parent().get_node("Player")
+
 @onready var healthbar := $UI/HealthBar
 @onready var shieldbar := $UI/ShieldBar
 @onready var fuelbar := $UI/FuelBar
 @onready var ammobar := $UI/AmmoBar
+@onready var has_ammo_sign = $HasAmmo
+@onready var has_rad_rod_sign = $HasRadRod
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	has_ammo_sign.hide()
+	has_rad_rod_sign.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if player.has_ammo:
+		has_ammo_sign.show()
+	else:
+		has_ammo_sign.hide()
+	
+	if player.has_old_rad_rod || player.has_new_rad_rod:
+		has_rad_rod_sign.show()
+	else:
+		has_rad_rod_sign.hide()
+	
 	healthbar.set_value_no_signal(Global.health)
 	shieldbar.set_value_no_signal(Global.shield)
 	fuelbar.set_value_no_signal(Global.fuel)
