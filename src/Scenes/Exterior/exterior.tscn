@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=27 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://datddm4c4r4qe" path="res://src/Scenes/UI/fuel_bar.tscn" id="7_n4rx7"]
 [ext_resource type="PackedScene" uid="uid://dcroef6gk2jkj" path="res://src/Scenes/UI/ammo_bar.tscn" id="8_mnlyr"]
 [ext_resource type="PackedScene" uid="uid://blthf1ai0yit6" path="res://src/Scenes/UI/distance_bar.tscn" id="9_seege"]
+[ext_resource type="Texture2D" uid="uid://bks2u08vtmab0" path="res://Assets/Sprites/cockpit_view_frame.png" id="13_oxcwf"]
 [ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
 [ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
 [ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
@@ -87,6 +88,43 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_ei5t0"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_rpj8d"]
 resource_name = "zoom_in"
 length = 0.5
@@ -123,43 +161,6 @@ tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 5, -0.051378, -3.83394, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5)
-}
-
-[sub_resource type="Animation" id="Animation_ei5t0"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(96, 1.45519e-11)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:zoom:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:zoom:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4wapo"]
@@ -216,6 +217,8 @@ offset_left = 352.0
 offset_top = 151.0
 offset_right = 452.0
 offset_bottom = 251.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 16
 columns = 2
 
 [node name="HealthBar" parent="UI/HealthBars" instance=ExtResource("5_f1sqc")]
@@ -231,11 +234,18 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DistanceBar" parent="UI" instance=ExtResource("9_seege")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 8.0
-offset_bottom = 256.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = -125.0
+offset_right = 59.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DistanceMeter" type="TextureRect" parent="UI"]
 layout_mode = 0
@@ -266,9 +276,14 @@ wait_time = 4.0
 one_shot = true
 autostart = true
 
+[node name="CockpitViewFrame" type="Sprite2D" parent="."]
+z_index = 15
+position = Vector2(414, 71)
+texture = ExtResource("13_oxcwf")
+
 [node name="Cockpit" parent="." instance=ExtResource("18_cpof2")]
 z_index = 20
-position = Vector2(411, 92)
+position = Vector2(414, 92)
 
 [connection signal="kill_enemy" from="LargeRobot" to="." method="kill_enemy"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

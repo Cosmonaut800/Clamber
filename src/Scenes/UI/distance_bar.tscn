@@ -1,11 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://blthf1ai0yit6"]
 
-[ext_resource type="Texture2D" uid="uid://jxercklg3pis" path="res://Assets/Sprites/danger.png" id="1_kjvbk"]
+[ext_resource type="Texture2D" uid="uid://dvbxoshe8ipfw" path="res://Assets/Sprites/lava.png" id="1_drmrm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a13pi"]
-texture = ExtResource("1_kjvbk")
+texture = ExtResource("1_drmrm")
+axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="DistanceBar" type="ProgressBar"]

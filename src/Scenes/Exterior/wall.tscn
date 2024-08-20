@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c4ftf4ulcd11v"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/wall.gd" id="1_cr5ek"]
-[ext_resource type="Texture2D" uid="uid://bppe4vj6r3w0x" path="res://Assets/Sprites/checker_32x.png" id="1_hu6pw"]
+[ext_resource type="Texture2D" uid="uid://btoawb70tybx3" path="res://Assets/Sprites/rockface.png" id="2_3ve4g"]
 [ext_resource type="Texture2D" uid="uid://der2ddvktpjme" path="res://Assets/Sprites/exterior_background.png" id="2_i8xus"]
 [ext_resource type="PackedScene" uid="uid://b5nvul8ordavc" path="res://src/Scenes/Exterior/scaffold.tscn" id="3_e1gq8"]
 
@@ -19,38 +19,66 @@ script = ExtResource("1_cr5ek")
 [node name="Left1" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(64, 135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+texture = ExtResource("2_3ve4g")
 
 [node name="Left2" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(64, -135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+texture = ExtResource("2_3ve4g")
 
 [node name="Right1" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(416, 135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+scale = Vector2(-1, 1)
+texture = ExtResource("2_3ve4g")
+
+[node name="Left3" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(64, 405)
+texture = ExtResource("2_3ve4g")
+
+[node name="Right3" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(416, 405)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_3ve4g")
+
+[node name="Left4" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(64, -405)
+texture = ExtResource("2_3ve4g")
+
+[node name="Right4" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(416, -405)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_3ve4g")
 
 [node name="Right2" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(416, -135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+scale = Vector2(-1, 1)
+texture = ExtResource("2_3ve4g")
 
 [node name="ExtremeRight1" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(544, 135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+texture = ExtResource("2_3ve4g")
 
 [node name="ExtremeRight2" type="Sprite2D" parent="Graphics"]
 z_index = 5
 position = Vector2(544, -135)
-scale = Vector2(4, 8.4375)
-texture = ExtResource("1_hu6pw")
+texture = ExtResource("2_3ve4g")
+
+[node name="ExtremeRight3" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(544, -405)
+texture = ExtResource("2_3ve4g")
+
+[node name="ExtremeRight4" type="Sprite2D" parent="Graphics"]
+z_index = 5
+position = Vector2(544, 405)
+texture = ExtResource("2_3ve4g")
 
 [node name="Background1" type="Sprite2D" parent="Graphics"]
 position = Vector2(240, 135)
@@ -58,6 +86,14 @@ texture = ExtResource("2_i8xus")
 
 [node name="Background2" type="Sprite2D" parent="Graphics"]
 position = Vector2(240, -135)
+texture = ExtResource("2_i8xus")
+
+[node name="Background3" type="Sprite2D" parent="Graphics"]
+position = Vector2(240, 405)
+texture = ExtResource("2_i8xus")
+
+[node name="Background4" type="Sprite2D" parent="Graphics"]
+position = Vector2(240, -405)
 texture = ExtResource("2_i8xus")
 
 [node name="Scaffolds" type="Node2D" parent="."]

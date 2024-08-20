@@ -105,6 +105,7 @@ position = Vector2(17, 32)
 [node name="Door" parent="." instance=ExtResource("7_glixx")]
 process_mode = 4
 position = Vector2(16, 22)
+scale = Vector2(0.9117, 1)
 
 [connection signal="activated" from="Buttons/ButtonUL" to="." method="_on_button_ul_activated"]
 [connection signal="activated" from="Buttons/ButtonUR" to="." method="_on_button_ur_activated"]
