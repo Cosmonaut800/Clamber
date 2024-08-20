@@ -16,9 +16,12 @@ const DISTANCE_FACTOR := 10.0
 @onready var you_marker := $UI/DistanceMeter/YouMarker
 @onready var danger_marker := $UI/DistanceMeter/DangerMarker
 @onready var spawn_timer := $SpawnTimer
+@onready var animation_tree := $LargeRobot/Camera2D/AnimationTree
 
 var enemy_template := preload("res://src/Scenes/Enemy/enemy.tscn")
 var enemies: Array[RigidBody2D] = []
+
+signal door_entered
 
 func _ready() -> void:
 	pass
@@ -64,7 +67,13 @@ func _on_cockpit_button_activated(index: int) -> void:
 			large_robot.move_lower_right_leg()
 
 func activate_exterior():
-	pass
+	cockpit.player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	cockpit.door.set_process_mode(Node.PROCESS_MODE_INHERIT)
 
 func deactivate_exterior():
-	pass
+	cockpit.player.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	cockpit.door.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	cockpit.player.set_global_position(cockpit.door_marker.global_position)
+
+func _on_cockpit_door_entered() -> void:
+	door_entered.emit()
