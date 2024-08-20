@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	if enemies:
 		target_rotation = global_position.direction_to(enemies[0].global_position).angle() + PI/2.0
 		
-		if target_rotation - rotation < 0.1 and Global.ammo > 0.0:
+		if target_rotation - rotation < 0.1 and Global.ammo > 0.0 and not large_robot.dead:
 			if kill_timer.is_stopped():
 				kill_timer.start()
 			is_firing = true

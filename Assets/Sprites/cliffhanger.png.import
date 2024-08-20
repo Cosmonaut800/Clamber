@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnpckrwxkd5xs"
-path="res://.godot/imported/PlayerRoboBaset.png-6621f2040bb5c2d80caa64e813b2c7cb.ctex"
+uid="uid://ik1rcysqgcvg"
+path="res://.godot/imported/cliffhanger.png-b379f8da994d1d6ba6c2ed5b39f9cae1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PlayerRoboBaset.png"
-dest_files=["res://.godot/imported/PlayerRoboBaset.png-6621f2040bb5c2d80caa64e813b2c7cb.ctex"]
+source_file="res://Assets/Sprites/cliffhanger.png"
+dest_files=["res://.godot/imported/cliffhanger.png-b379f8da994d1d6ba6c2ed5b39f9cae1.ctex"]
 
 [params]
 
 compress/mode=0
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

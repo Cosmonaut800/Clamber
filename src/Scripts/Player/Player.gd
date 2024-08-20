@@ -15,7 +15,6 @@ var has_new_rad_rod := false
 func _ready() -> void:
 	state_machine.init(self)
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 

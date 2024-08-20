@@ -46,7 +46,6 @@ script = ExtResource("5_otru0")
 shape = SubResource("CircleShape2D_w72pf")
 
 [node name="AutoTurret" parent="." node_paths=PackedStringArray("large_robot") instance=ExtResource("6_g1247")]
-position = Vector2(28, 4)
 large_robot = NodePath("..")
 
 [connection signal="kill_enemy" from="AutoTurret" to="." method="_on_auto_turret_kill_enemy"]

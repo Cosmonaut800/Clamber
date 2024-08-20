@@ -1,9 +1,7 @@
 extends Node
 
-@onready
-var player:= get_tree().current_scene.get_node("Player")
-@onready
-var camera:= get_tree().current_scene.get_node("PlayerCamera")
+var player: CharacterBody2D
+var camera: Camera2D
 
 
 const MAX_HEALTH := 100.0
