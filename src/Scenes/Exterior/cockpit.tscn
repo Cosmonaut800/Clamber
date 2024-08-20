@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c8w0p3ydygc4l"]
+[gd_scene load_steps=10 format=4 uid="uid://c8w0p3ydygc4l"]
 
 [ext_resource type="TileSet" uid="uid://5bf2keg1pooi" path="res://src/Scenes/Interior/interior.tres" id="1_asumi"]
 [ext_resource type="Script" path="res://src/Scripts/Exterior/cockpit.gd" id="1_de0f0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="2_vsl0d"]
 [ext_resource type="PackedScene" uid="uid://b7s6wvpasfodc" path="res://src/Scenes/Exterior/cockpit_button.tscn" id="4_spex4"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="6_dd1ut"]
+[ext_resource type="PackedScene" uid="uid://cfiq1uqcr8j4k" path="res://src/Scenes/Interior/Door.tscn" id="7_glixx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_og72b"]
 
@@ -98,7 +99,15 @@ position = Vector2(17, 32)
 collision_layer = 33
 collision_mask = 17
 
+[node name="DoorMarker" type="Node2D" parent="."]
+position = Vector2(17, 32)
+
+[node name="Door" parent="." instance=ExtResource("7_glixx")]
+process_mode = 4
+position = Vector2(16, 22)
+
 [connection signal="activated" from="Buttons/ButtonUL" to="." method="_on_button_ul_activated"]
 [connection signal="activated" from="Buttons/ButtonUR" to="." method="_on_button_ur_activated"]
 [connection signal="activated" from="Buttons/ButtonDL" to="." method="_on_button_dl_activated"]
 [connection signal="activated" from="Buttons/ButtonDR" to="." method="_on_button_dr_activated"]
+[connection signal="door_entered" from="Door" to="." method="_on_door_door_entered"]

@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://curmyyoldjdg5" path="res://src/Scenes/Interior/interior-floor.tres" id="2_7qunx"]
 [ext_resource type="Texture2D" uid="uid://c3hwkdlj6ljsc" path="res://Assets/Sprites/interior-tile-map.png" id="3_mfr47"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="4_jvbjx"]
-[ext_resource type="PackedScene" path="res://src/Scenes/Interior/Door.tscn" id="7_yjh5g"]
+[ext_resource type="PackedScene" uid="uid://cfiq1uqcr8j4k" path="res://src/Scenes/Interior/Door.tscn" id="7_yjh5g"]
 [ext_resource type="PackedScene" path="res://src/Scenes/Player/player_camera.tscn" id="8_hhi64"]
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="9_6odw1"]
 [ext_resource type="PackedScene" uid="uid://cmqshwf3am01x" path="res://src/Scenes/UI/gui_overlay.tscn" id="9_8gr0a"]
@@ -189,6 +189,11 @@ room_name = "TurretBay"
 position = Vector2(311, -51)
 
 [node name="Player" parent="." instance=ExtResource("9_6odw1")]
-position = Vector2(311, -51)
+position = Vector2(205, -372)
 
 [node name="GUIOverlay" parent="." instance=ExtResource("9_8gr0a")]
+
+[node name="DoorMarker" type="Node2D" parent="."]
+position = Vector2(240, -368)
+
+[connection signal="door_entered" from="Door" to="." method="_on_door_door_entered"]

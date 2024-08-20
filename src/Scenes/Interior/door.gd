@@ -7,7 +7,7 @@ var sign = $EnterSign
 var room_name : String 
 var player_in_range := false
 
-
+signal door_entered
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +19,8 @@ func _ready():
 func _process(delta):
 	if player_in_range:
 		sign.visible = true
+		if Input.is_action_just_pressed("move_up"):
+			door_entered.emit()
 	else:
 		sign.visible = false
 	
