@@ -11,6 +11,7 @@ size = Vector2(256, 128)
 script = ExtResource("1_c2rq2")
 
 [node name="Graphics" type="Sprite2D" parent="."]
+z_index = 4
 position = Vector2(0, 224)
 texture = ExtResource("2_8whsr")
 

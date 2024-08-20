@@ -22,6 +22,8 @@ var enemy_template := preload("res://src/Scenes/Enemy/enemy.tscn")
 var enemies: Array[RigidBody2D] = []
 
 signal door_entered
+signal died
+signal won
 
 func _ready() -> void:
 	pass
@@ -35,6 +37,9 @@ func _process(delta: float) -> void:
 	you_marker.position.y = 248.0 - large_robot.distance_climbed / DISTANCE_FACTOR
 	distancebar.value = (large_robot.distance_climbed - lava.position.y + 270.0) / DISTANCE_FACTOR
 	danger_marker.position.y = 251.0 - distancebar.value
+	
+	if large_robot.distance_climbed > DISTANCE_FACTOR * PLAYER_INDICATOR_OFFSET:
+		won.emit()
 
 func spawn_enemies(number: int, spawn_position: Vector2, initial_direction: Vector2 = Vector2.ZERO):
 	for i in number:
@@ -52,7 +57,7 @@ func kill_enemy(index: int = 0):
 func _on_spawn_timer_timeout() -> void:
 	spawn_timer.wait_time = randf_range(4.0, 8.0)
 	spawn_timer.start()
-	if enemies.size() < 5:
+	if enemies.size() < 5 and lava.started:
 		spawn_enemies(randi_range(2, 5), Vector2(176 + randf_range(-50.0, 50.0), 0), Vector2.DOWN)
 
 func _on_cockpit_button_activated(index: int) -> void:
@@ -67,6 +72,7 @@ func _on_cockpit_button_activated(index: int) -> void:
 			large_robot.move_lower_right_leg()
 
 func activate_exterior():
+	lava.started = true
 	cockpit.player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	cockpit.door.set_process_mode(Node.PROCESS_MODE_INHERIT)
 
@@ -77,3 +83,6 @@ func deactivate_exterior():
 
 func _on_cockpit_door_entered() -> void:
 	door_entered.emit()
+
+func _on_large_robot_died() -> void:
+	died.emit()

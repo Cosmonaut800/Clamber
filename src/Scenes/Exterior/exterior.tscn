@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://brynt3jvn4a67"]
+[gd_scene load_steps=28 format=3 uid="uid://brynt3jvn4a67"]
 
 [ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
 [ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
@@ -170,6 +170,9 @@ _data = {
 "zoom_in": SubResource("Animation_rpj8d")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo21y"]
+bg_color = Color(0.505344, 0.505344, 0.505344, 0.439216)
+
 [node name="Exterior" type="Node2D"]
 script = ExtResource("1_5n72r")
 
@@ -213,10 +216,10 @@ size_flags_vertical = 4
 
 [node name="HealthBars" type="GridContainer" parent="UI"]
 layout_mode = 0
-offset_left = 352.0
+offset_left = 354.0
 offset_top = 151.0
-offset_right = 452.0
-offset_bottom = 251.0
+offset_right = 474.0
+offset_bottom = 263.0
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 16
 columns = 2
@@ -232,6 +235,14 @@ layout_mode = 2
 
 [node name="AmmoBar" parent="UI/HealthBars" instance=ExtResource("8_mnlyr")]
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lo21y")
 
 [node name="DistanceBar" parent="UI" instance=ExtResource("9_seege")]
 layout_mode = 1
@@ -285,6 +296,7 @@ texture = ExtResource("13_oxcwf")
 z_index = 20
 position = Vector2(414, 92)
 
+[connection signal="died" from="LargeRobot" to="." method="_on_large_robot_died"]
 [connection signal="kill_enemy" from="LargeRobot" to="." method="kill_enemy"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="button_activated" from="Cockpit" to="." method="_on_cockpit_button_activated"]

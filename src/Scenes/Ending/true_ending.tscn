@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://sscpmod65mf5"]
+[gd_scene load_steps=16 format=3 uid="uid://bwyc5650slwrb"]
 
-[ext_resource type="Script" path="res://src/Scripts/UI/ending.gd" id="1_h363l"]
+[ext_resource type="Script" path="res://src/Scenes/Ending/true_ending.gd" id="1_7ivsh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_lbkya"]
+[sub_resource type="LabelSettings" id="LabelSettings_na4jq"]
 font_color = Color(0, 0, 0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bxqwa"]
+[sub_resource type="LabelSettings" id="LabelSettings_py7ny"]
 font_size = 72
 font_color = Color(0.721569, 0, 0, 0)
 
@@ -29,7 +29,7 @@ advance_condition = &"you_died"
 advance_mode = 2
 advance_condition = &"you_won"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b6nxd"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ayb53"]
 states/RESET/node = SubResource("AnimationNodeAnimation_vx6op")
 states/RESET/position = Vector2(344, 100)
 states/you_died/node = SubResource("AnimationNodeAnimation_svtfw")
@@ -204,15 +204,14 @@ _data = {
 "you_won": SubResource("Animation_jbilc")
 }
 
-[node name="Ending" type="Control"]
+[node name="TrueEnding" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_h363l")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_7ivsh")
 
 [node name="White" type="ColorRect" parent="."]
 layout_mode = 1
@@ -241,7 +240,7 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "and then he escaped     the end"
-label_settings = SubResource("LabelSettings_lbkya")
+label_settings = SubResource("LabelSettings_na4jq")
 vertical_alignment = 1
 
 [node name="Black" type="ColorRect" parent="."]
@@ -271,11 +270,11 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "YOU DIED"
-label_settings = SubResource("LabelSettings_bxqwa")
+label_settings = SubResource("LabelSettings_py7ny")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
-tree_root = SubResource("AnimationNodeStateMachine_b6nxd")
+tree_root = SubResource("AnimationNodeStateMachine_ayb53")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/you_died = false
 parameters/conditions/you_won = false
