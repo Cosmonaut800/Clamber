@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://lxugbm62kyqy"]
+
+[ext_resource type="Texture2D" uid="uid://7nn8fj2xk7pv" path="res://Assets/Sprites/butt_of_turret.png" id="1_0qbbb"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/turret_but.gd" id="1_tdyom"]
+[ext_resource type="PackedScene" uid="uid://bwby5isj74vfm" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_c21wh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdhnw"]
+size = Vector2(75, 40)
+
+[node name="TurretBut" type="Area2D"]
+script = ExtResource("1_tdyom")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0qbbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 60)
+shape = SubResource("RectangleShape2D_wdhnw")
+
+[node name="InteractionSign" parent="." instance=ExtResource("3_c21wh")]
+position = Vector2(0, 5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

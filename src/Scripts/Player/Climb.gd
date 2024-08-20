@@ -13,6 +13,8 @@ func enter() -> void:
 	move_speed = 80
 
 func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed("jump"):
+		return jump_state
 	return null
 
 func process_physics(_delta: float) -> State:
