@@ -23,8 +23,6 @@ func _process(delta):
 			door_entered.emit()
 	else:
 		sign.visible = false
-	
-	return null
 
 
 func _on_body_entered(body):

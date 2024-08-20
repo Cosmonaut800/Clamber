@@ -79,11 +79,13 @@ func activate_exterior():
 	lava.started = true
 	cockpit.player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	cockpit.door.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	AudioServer.get_bus_effect(AudioServer.get_bus_index("Exterior SFX"), 0).cutoff_hz = 20500.0
 
 func deactivate_exterior():
 	cockpit.player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	cockpit.door.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	cockpit.player.set_global_position(cockpit.door_marker.global_position)
+	AudioServer.get_bus_effect(AudioServer.get_bus_index("Exterior SFX"), 0).cutoff_hz = 500.0
 
 func _on_cockpit_door_entered() -> void:
 	door_entered.emit()

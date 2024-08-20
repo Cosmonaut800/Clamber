@@ -48,12 +48,15 @@ large_robot = NodePath("..")
 
 [node name="AudioStreamPlayerMoveUpper" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_mn1w3")
+bus = &"Exterior SFX"
 
 [node name="AudioStreamPlayerMoveLower" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_6ujlk")
+bus = &"Exterior SFX"
 
 [node name="AudioStreamPlayerArmImpact" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_fo5a1")
 volume_db = -4.0
+bus = &"Exterior SFX"
 
 [connection signal="kill_enemy" from="AutoTurret" to="." method="_on_auto_turret_kill_enemy"]

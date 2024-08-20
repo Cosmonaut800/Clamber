@@ -1,30 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp3m8gx4tesvi"]
+[gd_scene load_steps=9 format=3 uid="uid://dt7dog2564n0s"]
 
 [ext_resource type="Script" path="res://src/Scripts/Enemy/enemy.gd" id="1_hy8ly"]
-[ext_resource type="AudioStream" uid="uid://cs074xpiw58pk" path="res://Assets/SFX/Exterior/enemy_bounce_of_bot.wav" id="3_vffi5"]
-
+[ext_resource type="Texture2D" uid="uid://8v4ukw6c1k3u" path="res://Assets/Sprites/smallbat.png" id="3_cm0xp"]
+[ext_resource type="AudioStream" uid="uid://cs074xpiw58pk" path="res://Assets/SFX/Exterior/enemy_bounce_of_bot.wav" id="3_hps1e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vpr77"]
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kc6a1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0bgk"]
-atlas = ExtResource("2_apxep")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0lre"]
+atlas = ExtResource("3_cm0xp")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7jck"]
-atlas = ExtResource("2_apxep")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2sqh"]
+atlas = ExtResource("3_cm0xp")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1wi1f"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4oxvg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w0bgk")
+"texture": SubResource("AtlasTexture_s0lre")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t7jck")
+"texture": SubResource("AtlasTexture_a2sqh")
 }],
 "loop": true,
 "name": &"default",
@@ -44,12 +44,11 @@ script = ExtResource("1_hy8ly")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kc6a1")
 
-[node name="Graphics" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_1wi1f")
-
 [node name="AudioStreamPlayerRam" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_vffi5")
-volume_db = -4.0
+stream = ExtResource("3_hps1e")
 bus = &"Exterior SFX"
+
+[node name="Graphics" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4oxvg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

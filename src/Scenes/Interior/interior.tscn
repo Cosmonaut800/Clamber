@@ -149,7 +149,7 @@ position = Vector2(320, -48)
 position = Vector2(144, -368)
 
 [node name="onewaycollision7" parent="." instance=ExtResource("4_jvbjx")]
-position = Vector2(352, -271)
+position = Vector2(352, -272)
 
 [node name="EngineRoom" type="Area2D" parent="."]
 visible = false
@@ -190,7 +190,6 @@ shape = SubResource("RectangleShape2D_d5hpw")
 
 [node name="Door" parent="." instance=ExtResource("7_yjh5g")]
 position = Vector2(240, -378)
-room_name = "TurretBay"
 
 [node name="Timer" type="Timer" parent="."]
 

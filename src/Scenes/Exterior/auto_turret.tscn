@@ -38,8 +38,10 @@ one_shot = true
 
 [node name="AudioStreamPlayerEnemyDeath" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jb01c")
+bus = &"Exterior SFX"
 
 [node name="AudioStreamPlayerFiring" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_hb8ki")
+bus = &"Exterior SFX"
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

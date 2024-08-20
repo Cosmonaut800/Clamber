@@ -10,7 +10,6 @@ func _ready() -> void:
 	apply_impulse(Vector2(randf_range(-80.0, 80.0), randf_range(-80.0, 80.0)))
 	graphics.play("default")
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	var force := 100.0 * (ROBOT_POSITION - global_position).normalized()
