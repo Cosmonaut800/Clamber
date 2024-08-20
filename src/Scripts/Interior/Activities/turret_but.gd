@@ -5,6 +5,7 @@ var player = get_parent().get_node("Player")
 @onready
 var interaction_sign = $InteractionSign
 var player_in_range = false
+@onready var drop_off_sfx = $AudioStreamPlayerDropOff
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,7 @@ func _process(delta):
 		if player.has_ammo:
 			interaction_sign.show()
 		if player_in_range and Input.is_action_just_pressed("interact"):
+			drop_off_sfx.play()
 			interaction_sign.hide()
 			Global.ammo += 25.0
 			if Global.ammo > Global.MAX_AMMO:

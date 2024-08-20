@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bauqixey3yil6"
+path="res://.godot/imported/enemy_death scream.wav-0717e2658e2a48b32511c50dc6f1f00d.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Exterior/enemy_death scream.wav"
+dest_files=["res://.godot/imported/enemy_death scream.wav-0717e2658e2a48b32511c50dc6f1f00d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

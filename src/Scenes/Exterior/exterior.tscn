@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
 [ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
 [ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
-[ext_resource type="PackedScene" uid="uid://c8w0p3ydygc4l" path="res://src/Scenes/Exterior/cockpit.tscn" id="18_cpof2"]
+[ext_resource type="PackedScene" uid="uid://e08t0hmnbq4k" path="res://src/Scenes/Exterior/cockpit.tscn" id="18_cpof2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gt2jg"]
 animation = &"idle"

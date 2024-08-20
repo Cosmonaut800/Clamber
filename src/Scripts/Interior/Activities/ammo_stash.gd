@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var player = get_parent().get_node("Player")
 @onready var interaction_sign = $InteractionSign
+@onready var pick_up_sfx = $AudioStreamPlayerPickUpBullets
 var player_in_range = false
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,7 @@ func _process(delta):
 		interaction_sign.play("hover")
 		
 		if player_in_range and Input.is_action_just_pressed("interact"):
+			pick_up_sfx.play()
 			player.has_ammo = true
 		
 	else:

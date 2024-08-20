@@ -4,7 +4,8 @@ extends Node2D
 
 @onready var bullets := $Bullets
 @onready var kill_timer := $KillTimer
-
+@onready var death_sfx = $AudioStreamPlayerEnemyDeath
+@onready var firing_sfx = $AudioStreamPlayerFiring
 var is_firing := false
 var enemies: Array[RigidBody2D] = []
 var target_rotation := 0.0
@@ -36,6 +37,10 @@ func _process(delta: float) -> void:
 		is_firing = false
 		bullets.set_emitting(false)
 	
+	if is_firing:
+		if not firing_sfx.playing:
+			firing_sfx.play()
+	
 	if target_rotation > 2.0*PI:
 		target_rotation -= 2.0*PI
 	elif target_rotation < 0.0:
@@ -56,4 +61,5 @@ func _process(delta: float) -> void:
 
 
 func _on_kill_timer_timeout() -> void:
+	death_sfx.play()
 	kill_enemy.emit(0)

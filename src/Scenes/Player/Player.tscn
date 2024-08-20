@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://y1dlwg11ljk6"]
+[gd_scene load_steps=45 format=3 uid="uid://y1dlwg11ljk6"]
 
 [ext_resource type="Script" path="res://src/Scripts/Player/Player.gd" id="1_a6xmh"]
 [ext_resource type="Texture2D" uid="uid://cnpckrwxkd5xs" path="res://Assets/Sprites/PlayerRoboBaset.png" id="2_n828k"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://src/Scripts/Player/Fall.gd" id="6_3iyhk"]
 [ext_resource type="Script" path="res://src/Scripts/Player/Climb.gd" id="7_4vo37"]
 [ext_resource type="Script" path="res://src/Scripts/Player/Move.gd" id="8_gedyr"]
+[ext_resource type="AudioStream" uid="uid://cfaktkru6p1hv" path="res://Assets/SFX/Interior/Player/player_jumping.mp3" id="9_4w6vw"]
+[ext_resource type="AudioStream" uid="uid://b3vs7o0n4rysl" path="res://Assets/SFX/Interior/Player/player_run.wav" id="9_r74gi"]
+[ext_resource type="AudioStream" uid="uid://dpkj3ekot0thq" path="res://Assets/SFX/Interior/Player/ladder_climb_1.wav" id="10_rpxdn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itekq"]
 atlas = ExtResource("2_n828k")
@@ -328,6 +331,18 @@ shape = SubResource("RectangleShape2D_llriv")
 [node name="LadderDetector" type="RayCast2D" parent="."]
 scale = Vector2(8, 0.8)
 collision_mask = 4
+
+[node name="AudioStreamPlayerJumping" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_4w6vw")
+bus = &"Interior SFX"
+
+[node name="AudioStreamPlayerWalking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_r74gi")
+bus = &"Interior SFX"
+
+[node name="AudioStreamPlayerClimbing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_rpxdn")
+bus = &"Interior SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

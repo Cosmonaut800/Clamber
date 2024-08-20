@@ -10,6 +10,11 @@ extends Node2D
 @onready var lower_right_leg := $LargeRobotLegDR
 @onready var autoturret := $AutoTurret
 
+#audio
+@onready var move_arm_up_sfx := $AudioStreamPlayerMoveUpper
+@onready var move_arm_down_sfx := $AudioStreamPlayerMoveLower
+@onready var arm_impact_sfx := $AudioStreamPlayerArmImpact
+
 var target_position := Vector2.ZERO
 var distance_climbed := 0.0
 var distance_delta := Vector2.ZERO
@@ -104,6 +109,7 @@ func remove_enemy(index):
 	autoturret.enemies.remove_at(index)
 
 func move_upper_left_leg():
+	move_arm_up_sfx.play()
 	var next_scaffold
 	var closest_distance := -999999.9
 	
@@ -121,8 +127,12 @@ func move_upper_left_leg():
 		upper_left_leg.target_scaffold = wall.left_scaffolds.find(next_scaffold)
 		wall.left_scaffolds[upper_left_leg.target_scaffold].vacant = false
 		upper_left_leg.leg_target.position = next_scaffold.grapple_point.position
+		await get_tree().create_timer(0.3).timeout
+		arm_impact_sfx.play()
+
 
 func move_upper_right_leg():
+	move_arm_up_sfx.play()
 	var next_scaffold
 	var closest_distance := -999999.9
 	
@@ -140,8 +150,12 @@ func move_upper_right_leg():
 		upper_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[upper_right_leg.target_scaffold].vacant = false
 		upper_right_leg.leg_target.position = next_scaffold.grapple_point.position
+		await get_tree().create_timer(0.3).timeout
+		arm_impact_sfx.play()
+		
 
 func move_lower_left_leg():
+	move_arm_up_sfx.play()
 	var next_scaffold
 	var closest_distance := -999999.9
 	
@@ -153,12 +167,16 @@ func move_lower_left_leg():
 			next_scaffold = scaffold
 	
 	if next_scaffold and next_scaffold.vacant and Global.fuel > 0.0 and not dead:
+		
 		wall.left_scaffolds[lower_left_leg.target_scaffold].vacant = true
 		lower_left_leg.target_scaffold = wall.left_scaffolds.find(next_scaffold)
-		wall.left_scaffolds[upper_left_leg.target_scaffold].vacant = false
+		wall.left_scaffolds[lower_left_leg.target_scaffold].vacant = false
 		lower_left_leg.leg_target.position = next_scaffold.grapple_point.position
+		await get_tree().create_timer(0.3).timeout
+		arm_impact_sfx.play()
 
 func move_lower_right_leg():
+	move_arm_up_sfx.play()
 	var next_scaffold
 	var closest_distance := -999999.9
 	
@@ -174,6 +192,8 @@ func move_lower_right_leg():
 		lower_right_leg.target_scaffold = wall.right_scaffolds.find(next_scaffold)
 		wall.right_scaffolds[lower_right_leg.target_scaffold].vacant = false
 		lower_right_leg.leg_target.position = next_scaffold.grapple_point.position
+		await get_tree().create_timer(0.3).timeout
+		arm_impact_sfx.play()
 
 
 func _on_auto_turret_kill_enemy(index: int) -> void:
