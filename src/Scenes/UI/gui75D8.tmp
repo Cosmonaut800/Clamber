@@ -1,21 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmqshwf3am01x"]
+[gd_scene load_steps=6 format=3 uid="uid://cmqshwf3am01x"]
 
 [ext_resource type="Script" path="res://src/Scripts/UI/gui_overlay.gd" id="1_081pn"]
 [ext_resource type="PackedScene" uid="uid://dcroef6gk2jkj" path="res://src/Scenes/UI/ammo_bar.tscn" id="1_gpb14"]
 [ext_resource type="PackedScene" uid="uid://datddm4c4r4qe" path="res://src/Scenes/UI/fuel_bar.tscn" id="2_wn335"]
 [ext_resource type="PackedScene" uid="uid://c5rj65ofaxjxd" path="res://src/Scenes/UI/health_bar.tscn" id="3_sygm1"]
 [ext_resource type="PackedScene" uid="uid://di8c8qceau67x" path="res://src/Scenes/UI/shield_bar.tscn" id="4_s1uat"]
-[ext_resource type="Texture2D" uid="uid://dr41hypm8rurr" path="res://Assets/Sprites/has_ammo_sign.png" id="6_fgh3m"]
-[ext_resource type="Texture2D" uid="uid://dmm8ql3ecw46j" path="res://Assets/Sprites/has_rad_rod_sign.png" id="7_kml42"]
 
 [node name="GUIOverlay" type="CanvasLayer"]
 script = ExtResource("1_081pn")
 
 [node name="UI" type="GridContainer" parent="."]
-offset_left = 273.0
-offset_top = 3.0
-offset_right = 477.0
-offset_bottom = 51.0
+offset_left = 271.0
+offset_top = 218.0
+offset_right = 475.0
+offset_bottom = 266.0
 columns = 4
 
 [node name="AmmoBar" parent="UI" instance=ExtResource("1_gpb14")]
@@ -29,17 +27,3 @@ layout_mode = 2
 
 [node name="ShieldBar" parent="UI" instance=ExtResource("4_s1uat")]
 layout_mode = 2
-
-[node name="HasAmmo" type="TextureRect" parent="."]
-offset_left = 8.0
-offset_top = 6.0
-offset_right = 48.0
-offset_bottom = 46.0
-texture = ExtResource("6_fgh3m")
-
-[node name="HasRadRod" type="TextureRect" parent="."]
-offset_left = 8.0
-offset_top = 6.0
-offset_right = 48.0
-offset_bottom = 46.0
-texture = ExtResource("7_kml42")

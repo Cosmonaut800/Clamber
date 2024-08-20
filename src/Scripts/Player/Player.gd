@@ -7,8 +7,9 @@ var has_jumped := false
 
 var in_ladder_area := false
 
-@export
-var camera : Camera2D
+var has_ammo := false
+var has_old_rad_rod := false
+var has_new_rad_rod := false
 
 # Called when the node enters the scene tee for the first time.
 func _ready() -> void:

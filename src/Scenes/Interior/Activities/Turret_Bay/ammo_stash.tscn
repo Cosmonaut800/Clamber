@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cej70f7oon48o"]
+
+[ext_resource type="Texture2D" uid="uid://d1taoe1eww1ko" path="res://Assets/Sprites/ammo_stash.png" id="1_aq6fs"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ammo_stash.gd" id="1_okxkk"]
+[ext_resource type="PackedScene" uid="uid://bwby5isj74vfm" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_201dm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmnyf"]
+size = Vector2(98, 43)
+
+[node name="AmmoStash" type="Area2D"]
+script = ExtResource("1_okxkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aq6fs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 10.5)
+shape = SubResource("RectangleShape2D_mmnyf")
+
+[node name="InteractionSign" parent="." instance=ExtResource("3_201dm")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
