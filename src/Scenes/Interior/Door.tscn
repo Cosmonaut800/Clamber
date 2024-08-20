@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfiq1uqcr8j4k"]
+[gd_scene load_steps=11 format=3 uid="uid://d34miuaa1edwl"]
 
 [ext_resource type="Script" path="res://src/Scenes/Interior/door.gd" id="1_1w0xc"]
 [ext_resource type="Texture2D" uid="uid://g54g4yadagp1" path="res://Assets/Sprites/Enter_Sign.png" id="2_81vle"]

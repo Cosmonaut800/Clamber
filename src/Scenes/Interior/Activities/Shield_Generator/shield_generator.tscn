@@ -1,9 +1,12 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxde7ollqiokx"]
+[gd_scene load_steps=33 format=3 uid="uid://bxde7ollqiokx"]
 
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/shield_generator.gd" id="1_bvwpd"]
 [ext_resource type="Texture2D" uid="uid://dkxlgsjvsmv1c" path="res://Assets/Sprites/Exit_Sign.png" id="3_g5bje"]
 [ext_resource type="Texture2D" uid="uid://g54g4yadagp1" path="res://Assets/Sprites/Enter_Sign.png" id="4_cysbk"]
 [ext_resource type="Texture2D" uid="uid://baidoch4r3yjh" path="res://Assets/Sprites/shield_generator.png" id="4_rbf01"]
+[ext_resource type="AudioStream" uid="uid://50ofwd4uadna" path="res://Assets/SFX/Interior/Interaction/crank_up.wav" id="5_31xla"]
+[ext_resource type="AudioStream" uid="uid://40o7ae7rp0w" path="res://Assets/SFX/Interior/Interaction/crank_down.wav" id="6_0jfyw"]
+[ext_resource type="AudioStream" uid="uid://yblcx5wmorae" path="res://Assets/SFX/Interior/Interaction/Senor Pulse.wav" id="7_7qwsq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37qoe"]
 atlas = ExtResource("3_g5bje")
@@ -177,7 +180,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"working",
-"speed": 8.0
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pme40"]
@@ -195,11 +198,23 @@ animation = &"press_down"
 [node name="ShieldGenerator" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i0u1n")
 animation = &"working"
-frame_progress = 0.331018
+frame_progress = 0.771899
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 18.5)
 shape = SubResource("RectangleShape2D_pme40")
+
+[node name="AudioStreamPlayerCrankUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_31xla")
+bus = &"Interior SFX"
+
+[node name="AudioStreamPlayerCrankDown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0jfyw")
+bus = &"Interior SFX"
+
+[node name="AudioStreamPlayerPulsate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_7qwsq")
+max_distance = 600.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

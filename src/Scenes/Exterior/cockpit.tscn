@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c8w0p3ydygc4l"]
+[gd_scene load_steps=11 format=4 uid="uid://e08t0hmnbq4k"]
 
 [ext_resource type="TileSet" uid="uid://5bf2keg1pooi" path="res://src/Scenes/Interior/interior.tres" id="1_asumi"]
 [ext_resource type="Script" path="res://src/Scripts/Exterior/cockpit.gd" id="1_de0f0"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="2_vsl0d"]
 [ext_resource type="PackedScene" uid="uid://b7s6wvpasfodc" path="res://src/Scenes/Exterior/cockpit_button.tscn" id="4_spex4"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="6_dd1ut"]
-[ext_resource type="PackedScene" uid="uid://cfiq1uqcr8j4k" path="res://src/Scenes/Interior/Door.tscn" id="7_glixx"]
+[ext_resource type="PackedScene" uid="uid://d34miuaa1edwl" path="res://src/Scenes/Interior/Door.tscn" id="7_glixx"]
+[ext_resource type="AudioStream" uid="uid://b1wx5fp8mknmn" path="res://Assets/SFX/Exterior/top_arm_move.wav" id="8_8557w"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_og72b"]
 
@@ -107,6 +108,13 @@ position = Vector2(17, 32)
 process_mode = 4
 position = Vector2(16, 22)
 scale = Vector2(0.9117, 1)
+
+[node name="AudioStreamPlayerUpperArm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-64, -40)
+stream = ExtResource("8_8557w")
+
+[node name="AudioStreamPlayerBottomArm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-64, -40)
 
 [connection signal="activated" from="Buttons/ButtonUL" to="." method="_on_button_ul_activated"]
 [connection signal="activated" from="Buttons/ButtonUR" to="." method="_on_button_ur_activated"]

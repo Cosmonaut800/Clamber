@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://lxugbm62kyqy"]
+[gd_scene load_steps=6 format=3 uid="uid://lxugbm62kyqy"]
 
 [ext_resource type="Texture2D" uid="uid://7nn8fj2xk7pv" path="res://Assets/Sprites/butt_of_turret.png" id="1_0qbbb"]
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/turret_but.gd" id="1_tdyom"]
 [ext_resource type="PackedScene" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_c21wh"]
+[ext_resource type="AudioStream" uid="uid://8obp33p8pa2y" path="res://Assets/SFX/Interior/Interaction/Trap_Set_1.wav" id="4_d2b2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdhnw"]
 size = Vector2(75, 40)
@@ -19,6 +20,10 @@ shape = SubResource("RectangleShape2D_wdhnw")
 
 [node name="InteractionSign" parent="." instance=ExtResource("3_c21wh")]
 position = Vector2(0, 5)
+
+[node name="AudioStreamPlayerDropOff" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d2b2j")
+bus = &"Interior SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

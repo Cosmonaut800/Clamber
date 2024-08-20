@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbw5qmd57gc5o"]
+[gd_scene load_steps=10 format=3 uid="uid://bbw5qmd57gc5o"]
 
 [ext_resource type="Texture2D" uid="uid://bbu4pi2pupbgl" path="res://Assets/Sprites/Robot-Reactor.png" id="1_f7uxq"]
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/reactor_engine.gd" id="1_g5pre"]
 [ext_resource type="PackedScene" uid="uid://c4sw6r1gdpo4s" path="res://src/Scenes/Interior/Activities/Reactor Engine/rad_rod.tscn" id="2_w3uti"]
 [ext_resource type="PackedScene" path="res://src/Scenes/Misc/interaction_sign.tscn" id="4_w2b4r"]
+[ext_resource type="AudioStream" uid="uid://c1u7hhibii8xp" path="res://Assets/SFX/Interior/Interaction/pick_up_rad_rod.wav" id="5_ecng4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6us7d"]
 atlas = ExtResource("1_f7uxq")
@@ -51,6 +52,9 @@ position = Vector2(137, 38)
 
 [node name="InteractionSign" parent="." instance=ExtResource("4_w2b4r")]
 position = Vector2(139, -8)
+
+[node name="AudioStreamPlayerPickUpRod" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ecng4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp3m8gx4tesvi"]
+[gd_scene load_steps=6 format=3 uid="uid://cp3m8gx4tesvi"]
 
 [ext_resource type="Script" path="res://src/Scripts/Enemy/enemy.gd" id="1_hy8ly"]
-[ext_resource type="Texture2D" uid="uid://8v4ukw6c1k3u" path="res://Assets/Sprites/smallbat.png" id="2_apxep"]
+[ext_resource type="AudioStream" uid="uid://cs074xpiw58pk" path="res://Assets/SFX/Exterior/enemy_bounce_of_bot.wav" id="3_vffi5"]
+
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vpr77"]
 friction = 0.0
@@ -45,5 +46,10 @@ shape = SubResource("CircleShape2D_kc6a1")
 
 [node name="Graphics" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1wi1f")
+
+[node name="AudioStreamPlayerRam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vffi5")
+volume_db = -4.0
+bus = &"Exterior SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

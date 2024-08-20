@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://b2xxwflvyephd"]
+[gd_scene load_steps=24 format=3 uid="uid://b2xxwflvyephd"]
 
 [ext_resource type="Shader" path="res://src/Shaders/alpha_transparency.gdshader" id="1_0vom4"]
 [ext_resource type="Script" path="res://src/Scripts/main.gd" id="1_3xf7p"]
 [ext_resource type="PackedScene" uid="uid://brynt3jvn4a67" path="res://src/Scenes/Exterior/exterior.tscn" id="1_ih0r2"]
 [ext_resource type="PackedScene" uid="uid://c4nh7368drqi8" path="res://src/Scenes/Interior/interior.tscn" id="1_n4jvh"]
+[ext_resource type="Script" path="res://src/Scenes/Exterior/sub_viewport_container.gd" id="3_qa360"]
 [ext_resource type="Script" path="res://src/Scripts/exterior_viewport.gd" id="5_sg8vf"]
 [ext_resource type="PackedScene" uid="uid://sscpmod65mf5" path="res://src/Scenes/Ending/ending.tscn" id="6_fcbqc"]
+[ext_resource type="AudioStream" uid="uid://bs5vnc5irr4u0" path="res://Assets/SFX/Clamber_BG_Music.wav" id="7_1wq8c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_46k0f"]
 shader = ExtResource("1_0vom4")
@@ -148,17 +150,22 @@ script = ExtResource("1_3xf7p")
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = -1380.0
 offset_top = -1089.0
-offset_right = -1340.0
-offset_bottom = -1049.0
+offset_right = -900.0
+offset_bottom = -819.0
+script = ExtResource("3_qa360")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="Exterior" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ih0r2")]
+
+[node name="Control" type="Control" parent="SubViewportContainer"]
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_46k0f")
@@ -190,6 +197,13 @@ libraries = {
 [node name="Ending" parent="CanvasLayer" instance=ExtResource("6_fcbqc")]
 z_index = 100
 custom_minimum_size = Vector2(480, 270)
+
+[node name="AudioStreamPlayerBGMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, -1)
+stream = ExtResource("7_1wq8c")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="door_entered" from="Interior" to="." method="_on_interior_door_entered"]
 [connection signal="died" from="SubViewportContainer/SubViewport/Exterior" to="." method="_on_exterior_died"]

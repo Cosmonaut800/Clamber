@@ -8,11 +8,13 @@ var move_state: State
 var idle_state: State
 @export
 var climb_state: State
+@onready var jumping_sfx = $"../../AudioStreamPlayerJumping"
 
 func enter() -> void:
 	super()
 	parent.has_jumped = true
 	parent.velocity.y -= 300
+	jumping_sfx.play()
 
 func process_input(_event: InputEvent) -> State:
 		

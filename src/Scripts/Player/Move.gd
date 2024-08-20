@@ -9,6 +9,9 @@ var fall_state: State
 @export
 var climb_state: State
 
+@onready var walking_sfx = $"../../AudioStreamPlayerWalking"
+
+
 
 var prevInput
 
@@ -20,6 +23,8 @@ func enter() -> void:
 
 func exit() -> void:
 	parent.velocity.x = 0
+	if walking_sfx.playing:
+		walking_sfx.stop()
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
@@ -32,6 +37,8 @@ func process_input(_event: InputEvent) -> State:
 
 
 func process_physics(_delta: float) -> State:
+	if !walking_sfx.playing:
+		walking_sfx.play()
 	parent.velocity.y += gravity * _delta
 	
 	var input = Input.get_axis("move_left","move_right")

@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var sprite := $AnimatedSprite2D
+@onready var top_arm_sfx := $"../../AudioStreamPlayerUpperArm"
+@onready var bot_arm_sfx := $"../../AudioStreamPlayerBottomArm"
 
 signal activated
 

@@ -10,6 +10,8 @@ var rad_rod = $RadRod
 var timer = $Timer
 @onready
 var rad_rod_shelf_sign = get_parent().get_node("ReactorRodShelf").get_node("InteractionSign")
+@onready
+var pick_up_rad_rod_sfx = $AudioStreamPlayerPickUpRod
 
 var player_in_range := false
 
@@ -26,10 +28,12 @@ func _process(delta):
 		interaction_sign.hide()
 	
 	if player_in_range and not player.has_old_rad_rod and not player.has_new_rad_rod and Input.is_action_just_pressed("interact") and timer.is_stopped():
+		pick_up_rad_rod_sfx.play()
 		player.has_old_rad_rod = true
 		rad_rod.hide()
 	
 	if player_in_range and player.has_new_rad_rod and Input.is_action_just_pressed("interact"):
+		pick_up_rad_rod_sfx.play()
 		player.has_new_rad_rod = false
 		rad_rod.show()
 		Global.fuel = Global.MAX_FUEL
