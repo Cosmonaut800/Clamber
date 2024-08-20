@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/reactor_engine.gd" id="1_g5pre"]
 [ext_resource type="PackedScene" uid="uid://c4sw6r1gdpo4s" path="res://src/Scenes/Interior/Activities/Reactor Engine/rad_rod.tscn" id="2_w3uti"]
 [ext_resource type="PackedScene" path="res://src/Scenes/Misc/interaction_sign.tscn" id="4_w2b4r"]
-[ext_resource type="AudioStream" uid="uid://c1u7hhibii8xp" path="res://Assets/SFX/Interior/Interaction/pick_up_rad_rod.wav" id="5_ecng4"]
+[ext_resource type="AudioStream" uid="uid://b42ajuiiujc0o" path="res://Assets/SFX/Interior/Interaction/radrod.wav" id="5_fknlq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6us7d"]
 atlas = ExtResource("1_f7uxq")
@@ -54,7 +54,7 @@ position = Vector2(137, 38)
 position = Vector2(139, -8)
 
 [node name="AudioStreamPlayerPickUpRod" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_ecng4")
+stream = ExtResource("5_fknlq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

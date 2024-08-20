@@ -167,6 +167,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0.721569, 0, 0, 0), Color(0.721569, 0, 0, 0), Color(0.721569, 0, 0, 1)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.46667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_audio_out"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_jbilc"]
 resource_name = "you_won"
@@ -194,6 +208,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_audio_out"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_18j6x"]
@@ -285,3 +313,21 @@ root_node = NodePath("../AnimationTree")
 libraries = {
 "": SubResource("AnimationLibrary_18j6x")
 }
+
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -75.0
+offset_right = 47.5
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play Again?"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

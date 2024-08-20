@@ -30,6 +30,7 @@ func _process(delta):
 	if player_in_range and not player.has_old_rad_rod and not player.has_new_rad_rod and Input.is_action_just_pressed("interact") and timer.is_stopped():
 		pick_up_rad_rod_sfx.play()
 		player.has_old_rad_rod = true
+		Global.fuel = 0.0
 		rad_rod.hide()
 	
 	if player_in_range and player.has_new_rad_rod and Input.is_action_just_pressed("interact"):

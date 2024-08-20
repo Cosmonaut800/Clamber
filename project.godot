@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 config/icon="res://src/Scripts/icon.svg"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 Global="*res://src/Scripts/global.gd"

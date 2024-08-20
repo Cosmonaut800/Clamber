@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 	
 	if is_firing:
 		if not firing_sfx.playing:
+			firing_sfx.pitch_scale = randf_range(0.95, 1.0)
 			firing_sfx.play()
 	
 	if target_rotation > 2.0*PI:
@@ -60,5 +61,6 @@ func _process(delta: float) -> void:
 	
 
 func _on_kill_timer_timeout() -> void:
+	death_sfx.pitch_scale = randf_range(0.9, 1.1)
 	death_sfx.play()
 	kill_enemy.emit(0)

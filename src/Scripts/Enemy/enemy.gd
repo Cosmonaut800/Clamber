@@ -17,7 +17,8 @@ func _physics_process(_delta: float) -> void:
 	apply_central_force(force)
 
 func _on_body_entered(body: Node) -> void:
-	ram_sfx.play()
 	if body.collision_layer == 1:
 		apply_impulse(100.0 * (global_position - body.global_position).normalized())
 		body.deal_damage(2.0)
+		ram_sfx.pitch_scale = randf_range(0.8, 1.2)
+		ram_sfx.play()

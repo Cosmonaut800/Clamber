@@ -21,7 +21,9 @@ func _on_exterior_door_entered() -> void:
 	exterior.animation_tree.set("parameters/conditions/zoom_in", true)
 
 func _on_exterior_died() -> void:
+	interior.gui_overlay.set_visible(false)
 	ending.play_losing_animation()
 
 func _on_exterior_won() -> void:
+	interior.gui_overlay.set_visible(false)
 	ending.play_winning_animation()
