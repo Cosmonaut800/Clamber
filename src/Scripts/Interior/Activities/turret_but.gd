@@ -21,7 +21,7 @@ func _process(delta):
 		if player_in_range and Input.is_action_just_pressed("interact"):
 			drop_off_sfx.play()
 			interaction_sign.hide()
-			Global.ammo += 25.0
+			Global.ammo += 30.0
 			if Global.ammo > Global.MAX_AMMO:
 				Global.ammo = Global.MAX_AMMO
 			player.has_ammo = false

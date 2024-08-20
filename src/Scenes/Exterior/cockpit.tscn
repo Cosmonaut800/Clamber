@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Scripts/Exterior/cockpit.gd" id="1_de0f0"]
 [ext_resource type="TileSet" uid="uid://curmyyoldjdg5" path="res://src/Scenes/Interior/interior-floor.tres" id="2_7neng"]
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="2_vsl0d"]
-[ext_resource type="PackedScene" path="res://src/Scenes/Exterior/cockpit_button.tscn" id="4_spex4"]
+[ext_resource type="PackedScene" uid="uid://b7s6wvpasfodc" path="res://src/Scenes/Exterior/cockpit_button.tscn" id="4_spex4"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="6_dd1ut"]
 [ext_resource type="PackedScene" uid="uid://d34miuaa1edwl" path="res://src/Scenes/Interior/Door.tscn" id="7_glixx"]
 [ext_resource type="AudioStream" uid="uid://b1wx5fp8mknmn" path="res://Assets/SFX/Exterior/top_arm_move.wav" id="8_8557w"]
