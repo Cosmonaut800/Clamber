@@ -33,15 +33,15 @@ signal died
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	upper_left_leg.target_scaffold = 1
-	upper_right_leg.target_scaffold = 1
+	upper_left_leg.target_scaffold = 2
+	upper_right_leg.target_scaffold = 2
 	lower_left_leg.target_scaffold = 0
 	lower_right_leg.target_scaffold = 0
 	
 	wall.left_scaffolds[0].vacant = false
-	wall.left_scaffolds[1].vacant = false
+	wall.left_scaffolds[2].vacant = false
 	wall.right_scaffolds[0].vacant = false
-	wall.right_scaffolds[1].vacant = false
+	wall.right_scaffolds[2].vacant = false
 	
 	autoturret.enemies = enemies
 

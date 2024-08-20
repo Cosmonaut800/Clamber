@@ -38,6 +38,10 @@ func _process(delta: float) -> void:
 	distancebar.value = (large_robot.distance_climbed - lava.position.y + 270.0) / DISTANCE_FACTOR
 	danger_marker.position.y = 251.0 - distancebar.value
 	
+	Global.distance_bar_value = distancebar.value
+	Global.you_marker_position = you_marker.position.y
+	Global.danger_marker_position = danger_marker.position.y
+	
 	if large_robot.distance_climbed > DISTANCE_FACTOR * PLAYER_INDICATOR_OFFSET:
 		won.emit()
 

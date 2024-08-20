@@ -8,6 +8,9 @@ extends CanvasLayer
 @onready var ammobar := $UI/AmmoBar
 @onready var has_ammo_sign = $HasAmmo
 @onready var has_rad_rod_sign = $HasRadRod
+@onready var distancebar := $DistanceBar
+@onready var you_marker := $DistanceMeter/YouMarker
+@onready var danger_marker := $DistanceMeter/DangerMarker
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,3 +35,7 @@ func _process(delta):
 	shieldbar.set_value_no_signal(Global.shield)
 	fuelbar.set_value_no_signal(Global.fuel)
 	ammobar.set_value_no_signal(Global.ammo)
+	
+	distancebar.value = Global.distance_bar_value
+	you_marker.position.y = Global.you_marker_position
+	danger_marker.position.y = Global.danger_marker_position

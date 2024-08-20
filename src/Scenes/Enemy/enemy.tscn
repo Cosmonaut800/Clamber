@@ -1,13 +1,35 @@
 [gd_scene load_steps=6 format=3 uid="uid://cp3m8gx4tesvi"]
 
-[ext_resource type="Texture2D" uid="uid://db4hhtflk84a0" path="res://Assets/Sprites/enemy_placeholder.png" id="1_6amop"]
 [ext_resource type="Script" path="res://src/Scripts/Enemy/enemy.gd" id="1_hy8ly"]
 [ext_resource type="AudioStream" uid="uid://cs074xpiw58pk" path="res://Assets/SFX/Exterior/enemy_bounce_of_bot.wav" id="3_vffi5"]
+
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vpr77"]
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kc6a1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0bgk"]
+atlas = ExtResource("2_apxep")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7jck"]
+atlas = ExtResource("2_apxep")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wi1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0bgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7jck")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="RigidBody2D"]
 collision_layer = 2
@@ -22,8 +44,8 @@ script = ExtResource("1_hy8ly")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kc6a1")
 
-[node name="Graphics" type="Sprite2D" parent="."]
-texture = ExtResource("1_6amop")
+[node name="Graphics" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1wi1f")
 
 [node name="AudioStreamPlayerRam" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_vffi5")

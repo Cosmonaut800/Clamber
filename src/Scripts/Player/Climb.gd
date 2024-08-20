@@ -10,7 +10,7 @@ var fall_state: State
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
-	move_speed = 80
+	move_speed = 100
 
 func exit() -> void:
 	if climbing_sfx.playing:

@@ -21,7 +21,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
 	if player.has_old_rad_rod || dropped_off_old_rod:
 		interaction_sign.show()
 	else:	

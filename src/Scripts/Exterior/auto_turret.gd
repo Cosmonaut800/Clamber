@@ -59,7 +59,6 @@ func _process(delta: float) -> void:
 	rotation += 0.1 * (target_rotation - rotation)
 	
 
-
 func _on_kill_timer_timeout() -> void:
 	death_sfx.play()
 	kill_enemy.emit(0)
