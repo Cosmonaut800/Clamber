@@ -10,7 +10,7 @@ var fall_state: State
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
-	move_speed = 80
+	move_speed = 100
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
