@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4sw6r1gdpo4s"]
+
+[ext_resource type="Texture2D" uid="uid://bkww0xc8wjhk0" path="res://Assets/Sprites/reactor-rod.png" id="1_717om"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/rad_rod.gd" id="1_ua1nr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0acoo"]
+atlas = ExtResource("1_717om")
+region = Rect2(0, 0, 2, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuy32"]
+atlas = ExtResource("1_717om")
+region = Rect2(2, 0, 2, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cawy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0acoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuy32")
+}],
+"loop": true,
+"name": &"rad_rod_states",
+"speed": 5.0
+}]
+
+[node name="RadRod" type="Node2D"]
+script = ExtResource("1_ua1nr")
+
+[node name="RadRod" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cawy5")
+animation = &"rad_rod_states"

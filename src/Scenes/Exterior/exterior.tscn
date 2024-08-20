@@ -1,0 +1,303 @@
+[gd_scene load_steps=28 format=3 uid="uid://brynt3jvn4a67"]
+
+[ext_resource type="Script" path="res://src/Scripts/Exterior/exterior.gd" id="1_5n72r"]
+[ext_resource type="PackedScene" uid="uid://c4ftf4ulcd11v" path="res://src/Scenes/Exterior/wall.tscn" id="2_tw0bi"]
+[ext_resource type="PackedScene" uid="uid://c3wx4dw5u5doi" path="res://src/Scenes/Exterior/large_robot.tscn" id="3_hd2ba"]
+[ext_resource type="PackedScene" uid="uid://cnad56jjr8srn" path="res://src/Scenes/Exterior/lava.tscn" id="3_hgbjy"]
+[ext_resource type="PackedScene" uid="uid://c5rj65ofaxjxd" path="res://src/Scenes/UI/health_bar.tscn" id="5_f1sqc"]
+[ext_resource type="PackedScene" uid="uid://di8c8qceau67x" path="res://src/Scenes/UI/shield_bar.tscn" id="6_tp6uc"]
+[ext_resource type="PackedScene" uid="uid://datddm4c4r4qe" path="res://src/Scenes/UI/fuel_bar.tscn" id="7_n4rx7"]
+[ext_resource type="PackedScene" uid="uid://dcroef6gk2jkj" path="res://src/Scenes/UI/ammo_bar.tscn" id="8_mnlyr"]
+[ext_resource type="PackedScene" uid="uid://blthf1ai0yit6" path="res://src/Scenes/UI/distance_bar.tscn" id="9_seege"]
+[ext_resource type="Texture2D" uid="uid://bks2u08vtmab0" path="res://Assets/Sprites/cockpit_view_frame.png" id="13_oxcwf"]
+[ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="15_2ftun"]
+[ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="16_tuiu2"]
+[ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="17_3r2t5"]
+[ext_resource type="PackedScene" uid="uid://e08t0hmnbq4k" path="res://src/Scenes/Exterior/cockpit.tscn" id="18_cpof2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gt2jg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0b534"]
+animation = &"zoom_in"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4exuc"]
+animation = &"zoom_in"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ew7o"]
+advance_mode = 2
+advance_condition = &"zoom_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r4kii"]
+advance_mode = 2
+advance_condition = &"zoom_in"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jdcnc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c680r"]
+advance_mode = 2
+advance_condition = &"zoom_out"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_eniu2"]
+states/Start/position = Vector2(315, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_gt2jg")
+states/idle/position = Vector2(449, 100)
+states/zoom_in/node = SubResource("AnimationNodeAnimation_0b534")
+states/zoom_in/position = Vector2(607, 60)
+states/zoom_out/node = SubResource("AnimationNodeAnimation_4exuc")
+states/zoom_out/position = Vector2(607, 142)
+transitions = ["zoom_in", "zoom_out", SubResource("AnimationNodeStateMachineTransition_2ew7o"), "zoom_out", "zoom_in", SubResource("AnimationNodeStateMachineTransition_r4kii"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_jdcnc"), "idle", "zoom_out", SubResource("AnimationNodeStateMachineTransition_c680r")]
+graph_offset = Vector2(82, 5)
+
+[sub_resource type="Animation" id="Animation_tvlsh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ei5t0"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_rpj8d"]
+resource_name = "zoom_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 1.45519e-11), Vector2(1.45519e-11, -32)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 5, -0.0545263, -3.85603, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 5, -0.051378, -3.83394, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wapo"]
+_data = {
+"RESET": SubResource("Animation_tvlsh"),
+"idle": SubResource("Animation_ei5t0"),
+"zoom_in": SubResource("Animation_rpj8d")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo21y"]
+bg_color = Color(0.505344, 0.505344, 0.505344, 0.439216)
+
+[node name="Exterior" type="Node2D"]
+script = ExtResource("1_5n72r")
+
+[node name="Wall" parent="." instance=ExtResource("2_tw0bi")]
+position = Vector2(-64, 0)
+
+[node name="LargeRobot" parent="." node_paths=PackedStringArray("wall", "lava") instance=ExtResource("3_hd2ba")]
+position = Vector2(176, 135)
+wall = NodePath("../Wall")
+lava = NodePath("../Lava")
+
+[node name="Camera2D" type="Camera2D" parent="LargeRobot"]
+offset = Vector2(96, 1.45519e-11)
+
+[node name="AnimationTree" type="AnimationTree" parent="LargeRobot/Camera2D"]
+tree_root = SubResource("AnimationNodeStateMachine_eniu2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/zoom_in = false
+parameters/conditions/zoom_out = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LargeRobot/Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_4wapo")
+}
+
+[node name="Lava" parent="." instance=ExtResource("3_hgbjy")]
+position = Vector2(176, 480)
+
+[node name="UI" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HealthBars" type="GridContainer" parent="UI"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 151.0
+offset_right = 474.0
+offset_bottom = 263.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="HealthBar" parent="UI/HealthBars" instance=ExtResource("5_f1sqc")]
+layout_mode = 2
+
+[node name="ShieldBar" parent="UI/HealthBars" instance=ExtResource("6_tp6uc")]
+layout_mode = 2
+
+[node name="FuelBar" parent="UI/HealthBars" instance=ExtResource("7_n4rx7")]
+layout_mode = 2
+
+[node name="AmmoBar" parent="UI/HealthBars" instance=ExtResource("8_mnlyr")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lo21y")
+
+[node name="DistanceBar" parent="UI" instance=ExtResource("9_seege")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = -125.0
+offset_right = 59.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DistanceMeter" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+texture = ExtResource("15_2ftun")
+
+[node name="YouMarker" type="TextureRect" parent="UI/DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 248.0
+offset_right = 33.0
+offset_bottom = 256.0
+texture = ExtResource("16_tuiu2")
+
+[node name="DangerMarker" type="TextureRect" parent="UI/DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 251.0
+offset_right = 33.0
+offset_bottom = 259.0
+texture = ExtResource("17_3r2t5")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="CockpitViewFrame" type="Sprite2D" parent="."]
+z_index = 15
+position = Vector2(414, 71)
+texture = ExtResource("13_oxcwf")
+
+[node name="Cockpit" parent="." instance=ExtResource("18_cpof2")]
+z_index = 20
+position = Vector2(414, 92)
+
+[connection signal="died" from="LargeRobot" to="." method="_on_large_robot_died"]
+[connection signal="kill_enemy" from="LargeRobot" to="." method="kill_enemy"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="button_activated" from="Cockpit" to="." method="_on_cockpit_button_activated"]
+[connection signal="door_entered" from="Cockpit" to="." method="_on_cockpit_door_entered"]

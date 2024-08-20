@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://blthf1ai0yit6"]
+
+[ext_resource type="Texture2D" uid="uid://dvbxoshe8ipfw" path="res://Assets/Sprites/lava.png" id="1_drmrm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se7e3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a13pi"]
+texture = ExtResource("1_drmrm")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="DistanceBar" type="ProgressBar"]
+offset_left = 291.0
+offset_top = 10.0
+offset_right = 299.0
+offset_bottom = 266.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_se7e3")
+theme_override_styles/fill = SubResource("StyleBoxTexture_a13pi")
+max_value = 256.0
+value = 50.0
+fill_mode = 3
+show_percentage = false

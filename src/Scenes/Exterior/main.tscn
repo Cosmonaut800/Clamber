@@ -1,0 +1,211 @@
+[gd_scene load_steps=24 format=3 uid="uid://b2xxwflvyephd"]
+
+[ext_resource type="Shader" path="res://src/Shaders/alpha_transparency.gdshader" id="1_0vom4"]
+[ext_resource type="Script" path="res://src/Scripts/main.gd" id="1_3xf7p"]
+[ext_resource type="PackedScene" uid="uid://brynt3jvn4a67" path="res://src/Scenes/Exterior/exterior.tscn" id="1_ih0r2"]
+[ext_resource type="PackedScene" uid="uid://c4nh7368drqi8" path="res://src/Scenes/Interior/interior.tscn" id="1_n4jvh"]
+[ext_resource type="Script" path="res://src/Scenes/Exterior/sub_viewport_container.gd" id="3_qa360"]
+[ext_resource type="Script" path="res://src/Scripts/exterior_viewport.gd" id="5_sg8vf"]
+[ext_resource type="PackedScene" uid="uid://sscpmod65mf5" path="res://src/Scenes/Ending/ending.tscn" id="6_fcbqc"]
+[ext_resource type="AudioStream" uid="uid://bs5vnc5irr4u0" path="res://Assets/SFX/Clamber_BG_Music.wav" id="7_1wq8c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46k0f"]
+shader = ExtResource("1_0vom4")
+shader_parameter/userAlpha = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2fibu"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r75e6"]
+animation = &"fade_out"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_im5vu"]
+animation = &"fade_out"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_th3r2"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1hxr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lt4fa"]
+advance_mode = 2
+advance_condition = &"fade_in"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ced8e"]
+advance_mode = 2
+advance_condition = &"fade_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cb8h3"]
+advance_mode = 2
+advance_condition = &"fade_in"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yo4x4"]
+states/fade_in/node = SubResource("AnimationNodeAnimation_r75e6")
+states/fade_in/position = Vector2(555, 185)
+states/fade_out/node = SubResource("AnimationNodeAnimation_im5vu")
+states/fade_out/position = Vector2(555, 9)
+states/idle/node = SubResource("AnimationNodeAnimation_th3r2")
+states/idle/position = Vector2(392, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_v1hxr"), "idle", "fade_in", SubResource("AnimationNodeStateMachineTransition_lt4fa"), "fade_in", "fade_out", SubResource("AnimationNodeStateMachineTransition_ced8e"), "fade_out", "fade_in", SubResource("AnimationNodeStateMachineTransition_cb8h3")]
+graph_offset = Vector2(13, -48)
+
+[sub_resource type="Animation" id="Animation_oqwsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TextureRect:material:shader_parameter/userAlpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_oynt8"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Exterior")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_exterior"
+}, {
+"args": [],
+"method": &"deactivate_exterior"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../TextureRect:material:shader_parameter/userAlpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.45519e-11]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Interior")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"deactivate_interior"
+}, {
+"args": [],
+"method": &"activate_interior"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3ts7p"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TextureRect:material:shader_parameter/userAlpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.45519e-11]
+}
+
+[sub_resource type="Animation" id="Animation_u66tf"]
+resource_name = "true_idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8uq3f"]
+_data = {
+"RESET": SubResource("Animation_oqwsm"),
+"fade_out": SubResource("Animation_oynt8"),
+"idle": SubResource("Animation_3ts7p"),
+"true_idle": SubResource("Animation_u66tf")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3xf7p")
+
+[node name="Interior" parent="." instance=ExtResource("1_n4jvh")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -1380.0
+offset_top = -1089.0
+offset_right = -900.0
+offset_bottom = -819.0
+script = ExtResource("3_qa360")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Exterior" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ih0r2")]
+
+[node name="Control" type="Control" parent="SubViewportContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_46k0f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_2fibu")
+script = ExtResource("5_sg8vf")
+
+[node name="AnimationTree" type="AnimationTree" parent="TextureRect"]
+root_node = NodePath("../../SubViewportContainer/SubViewport")
+tree_root = SubResource("AnimationNodeStateMachine_yo4x4")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/fade_in = false
+parameters/conditions/fade_out = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+root_node = NodePath("../../SubViewportContainer/SubViewport")
+libraries = {
+"": SubResource("AnimationLibrary_8uq3f")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Ending" parent="CanvasLayer" instance=ExtResource("6_fcbqc")]
+z_index = 100
+custom_minimum_size = Vector2(480, 270)
+
+[node name="AudioStreamPlayerBGMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, -1)
+stream = ExtResource("7_1wq8c")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="door_entered" from="Interior" to="." method="_on_interior_door_entered"]
+[connection signal="died" from="SubViewportContainer/SubViewport/Exterior" to="." method="_on_exterior_died"]
+[connection signal="door_entered" from="SubViewportContainer/SubViewport/Exterior" to="." method="_on_exterior_door_entered"]
+[connection signal="won" from="SubViewportContainer/SubViewport/Exterior" to="." method="_on_exterior_won"]

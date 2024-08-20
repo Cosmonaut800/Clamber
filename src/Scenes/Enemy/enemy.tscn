@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt7dog2564n0s"]
+
+[ext_resource type="Script" path="res://src/Scripts/Enemy/enemy.gd" id="1_hy8ly"]
+[ext_resource type="AudioStream" uid="uid://c23dq2i08r5dp" path="res://Assets/SFX/Interior/Interaction/metal_thud.wav" id="2_jojfw"]
+[ext_resource type="Texture2D" uid="uid://8v4ukw6c1k3u" path="res://Assets/Sprites/smallbat.png" id="3_cm0xp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vpr77"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kc6a1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0lre"]
+atlas = ExtResource("3_cm0xp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2sqh"]
+atlas = ExtResource("3_cm0xp")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4oxvg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0lre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2sqh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 9
+physics_material_override = SubResource("PhysicsMaterial_vpr77")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_hy8ly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kc6a1")
+
+[node name="AudioStreamPlayerRam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jojfw")
+bus = &"Exterior SFX"
+
+[node name="Graphics" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4oxvg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

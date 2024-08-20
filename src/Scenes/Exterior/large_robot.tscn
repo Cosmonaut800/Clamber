@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3wx4dw5u5doi"]
+
+[ext_resource type="Script" path="res://src/Scripts/Exterior/large_robot.gd" id="1_nec0b"]
+[ext_resource type="PackedScene" uid="uid://c4xqleeujsqa7" path="res://src/Scenes/Exterior/large_robot_leg.tscn" id="2_rf0sm"]
+[ext_resource type="Texture2D" uid="uid://b1qu7mdwaeedk" path="res://Assets/Sprites/bigball.png" id="2_yyex1"]
+[ext_resource type="Script" path="res://src/Scripts/Exterior/robot_hitbox.gd" id="5_otru0"]
+[ext_resource type="PackedScene" uid="uid://b1y0oyeuchr1v" path="res://src/Scenes/Exterior/auto_turret.tscn" id="6_g1247"]
+[ext_resource type="AudioStream" uid="uid://b1wx5fp8mknmn" path="res://Assets/SFX/Exterior/top_arm_move.wav" id="6_mn1w3"]
+[ext_resource type="AudioStream" uid="uid://bqnkfcphgkkte" path="res://Assets/SFX/Exterior/bottom_arm_move.wav" id="7_6ujlk"]
+[ext_resource type="AudioStream" uid="uid://m3ya1a4ki02i" path="res://Assets/SFX/Exterior/Arm_Impact.wav" id="8_fo5a1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ancrp"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w72pf"]
+radius = 62.9365
+
+[node name="LargeRobot" type="Node2D"]
+script = ExtResource("1_nec0b")
+
+[node name="BodyGraphics" type="Sprite2D" parent="."]
+texture = ExtResource("2_yyex1")
+
+[node name="LargeRobotLegUL" parent="." instance=ExtResource("2_rf0sm")]
+position = Vector2(-48, -48)
+
+[node name="LargeRobotLegUR" parent="." instance=ExtResource("2_rf0sm")]
+position = Vector2(48, -48)
+chirality = "Right"
+
+[node name="LargeRobotLegDL" parent="." instance=ExtResource("2_rf0sm")]
+position = Vector2(-48, 48)
+
+[node name="LargeRobotLegDR" parent="." instance=ExtResource("2_rf0sm")]
+position = Vector2(48, 48)
+chirality = "Right"
+
+[node name="Hitbox" type="StaticBody2D" parent="."]
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_ancrp")
+script = ExtResource("5_otru0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_w72pf")
+
+[node name="AutoTurret" parent="." node_paths=PackedStringArray("large_robot") instance=ExtResource("6_g1247")]
+large_robot = NodePath("..")
+
+[node name="AudioStreamPlayerMoveUpper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_mn1w3")
+bus = &"Exterior SFX"
+
+[node name="AudioStreamPlayerMoveLower" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6ujlk")
+bus = &"Exterior SFX"
+
+[node name="AudioStreamPlayerArmImpact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_fo5a1")
+volume_db = -4.0
+bus = &"Exterior SFX"
+
+[connection signal="kill_enemy" from="AutoTurret" to="." method="_on_auto_turret_kill_enemy"]

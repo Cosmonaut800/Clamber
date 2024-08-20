@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://datddm4c4r4qe"]
+
+[ext_resource type="Texture2D" uid="uid://cyfk1nd7kcg5a" path="res://Assets/Sprites/ring_bg_48x.png" id="1_qli6e"]
+[ext_resource type="Texture2D" uid="uid://b1gou8juvg3iv" path="res://Assets/Sprites/status_nameplate_fuel.png" id="2_4pd6h"]
+[ext_resource type="Texture2D" uid="uid://dai2ylnjxj05e" path="res://Assets/Sprites/ring_green_48x.png" id="3_a60i8"]
+
+[node name="FuelBar" type="TextureProgressBar"]
+offset_left = -24.0
+offset_top = -23.0
+offset_right = 24.0
+offset_bottom = 25.0
+value = 75.0
+fill_mode = 4
+radial_initial_angle = 225.0
+radial_fill_degrees = 270.0
+texture_under = ExtResource("1_qli6e")
+texture_over = ExtResource("2_4pd6h")
+texture_progress = ExtResource("3_a60i8")

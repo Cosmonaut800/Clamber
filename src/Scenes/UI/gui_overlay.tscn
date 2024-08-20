@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmqshwf3am01x"]
+
+[ext_resource type="Script" path="res://src/Scripts/UI/gui_overlay.gd" id="1_081pn"]
+[ext_resource type="PackedScene" uid="uid://dcroef6gk2jkj" path="res://src/Scenes/UI/ammo_bar.tscn" id="1_gpb14"]
+[ext_resource type="PackedScene" uid="uid://datddm4c4r4qe" path="res://src/Scenes/UI/fuel_bar.tscn" id="2_wn335"]
+[ext_resource type="PackedScene" uid="uid://c5rj65ofaxjxd" path="res://src/Scenes/UI/health_bar.tscn" id="3_sygm1"]
+[ext_resource type="PackedScene" uid="uid://di8c8qceau67x" path="res://src/Scenes/UI/shield_bar.tscn" id="4_s1uat"]
+[ext_resource type="Texture2D" uid="uid://dr41hypm8rurr" path="res://Assets/Sprites/has_ammo_sign.png" id="6_fgh3m"]
+[ext_resource type="Texture2D" uid="uid://dmm8ql3ecw46j" path="res://Assets/Sprites/has_rad_rod_sign.png" id="7_kml42"]
+[ext_resource type="PackedScene" uid="uid://blthf1ai0yit6" path="res://src/Scenes/UI/distance_bar.tscn" id="8_gno2c"]
+[ext_resource type="Texture2D" uid="uid://cnho66eaqln53" path="res://Assets/Sprites/meter.png" id="9_by01n"]
+[ext_resource type="Texture2D" uid="uid://vtnrutq6hjx7" path="res://Assets/Sprites/you_marker.png" id="10_bfnn7"]
+[ext_resource type="Texture2D" uid="uid://jud8kbxkecg6" path="res://Assets/Sprites/danger_marker.png" id="11_jf0n3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wid3"]
+bg_color = Color(0.505344, 0.505344, 0.505344, 0.439216)
+
+[node name="GUIOverlay" type="CanvasLayer"]
+script = ExtResource("1_081pn")
+
+[node name="UI" type="GridContainer" parent="."]
+offset_left = 273.0
+offset_top = 3.0
+offset_right = 477.0
+offset_bottom = 51.0
+columns = 4
+
+[node name="AmmoBar" parent="UI" instance=ExtResource("1_gpb14")]
+layout_mode = 2
+
+[node name="FuelBar" parent="UI" instance=ExtResource("2_wn335")]
+layout_mode = 2
+
+[node name="HealthBar" parent="UI" instance=ExtResource("3_sygm1")]
+layout_mode = 2
+
+[node name="ShieldBar" parent="UI" instance=ExtResource("4_s1uat")]
+layout_mode = 2
+
+[node name="HasAmmo" type="TextureRect" parent="."]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 48.0
+texture = ExtResource("6_fgh3m")
+
+[node name="HasRadRod" type="TextureRect" parent="."]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 48.0
+texture = ExtResource("7_kml42")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 264.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wid3")
+
+[node name="DistanceBar" parent="." instance=ExtResource("8_gno2c")]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 264.0
+
+[node name="DistanceMeter" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 264.0
+texture = ExtResource("9_by01n")
+
+[node name="YouMarker" type="TextureRect" parent="DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 248.0
+offset_right = 33.0
+offset_bottom = 256.0
+texture = ExtResource("10_bfnn7")
+
+[node name="DangerMarker" type="TextureRect" parent="DistanceMeter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 251.0
+offset_right = 33.0
+offset_bottom = 259.0
+texture = ExtResource("11_jf0n3")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwby5isj74vfm"]
+
+[ext_resource type="Texture2D" uid="uid://dunc8orsywloe" path="res://Assets/Sprites/Press_Action.png" id="1_dopck"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6a6a"]
+atlas = ExtResource("1_dopck")
+region = Rect2(0, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u6b5"]
+atlas = ExtResource("1_dopck")
+region = Rect2(69, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v4jr"]
+atlas = ExtResource("1_dopck")
+region = Rect2(138, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1tqp"]
+atlas = ExtResource("1_dopck")
+region = Rect2(207, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv48r"]
+atlas = ExtResource("1_dopck")
+region = Rect2(276, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlvn7"]
+atlas = ExtResource("1_dopck")
+region = Rect2(345, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rwvm"]
+atlas = ExtResource("1_dopck")
+region = Rect2(414, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cepaq"]
+atlas = ExtResource("1_dopck")
+region = Rect2(483, 0, 69, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxnoo"]
+atlas = ExtResource("1_dopck")
+region = Rect2(552, 0, 69, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1ai8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6a6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u6b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v4jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1tqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv48r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlvn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rwvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cepaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxnoo")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 16.0
+}]
+
+[node name="InteractionSign" type="AnimatedSprite2D"]
+position = Vector2(-8, -56)
+sprite_frames = SubResource("SpriteFrames_r1ai8")
+animation = &"hover"
+frame_progress = 0.829306

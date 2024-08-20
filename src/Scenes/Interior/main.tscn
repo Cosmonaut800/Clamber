@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2n30giuushpl"]
+
+[ext_resource type="PackedScene" uid="uid://cmqshwf3am01x" path="res://src/Scenes/UI/gui_overlay.tscn" id="5_ci7qm"]
+
+[sub_resource type="GDScript" id="GDScript_c4s8t"]
+script/source = "extends Node2D
+
+@onready var room = $Room
+var scene = preload(\"res://src/Scenes/Interior/interior.tscn\").instantiate()
+@onready var player = $Player
+@onready var player_camera = $PlayerCamera
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	scene.add_child(player)
+	scene.add_child(player_camera)
+	room.add_child(scene)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Main" type="Node2D"]
+script = SubResource("GDScript_c4s8t")
+
+[node name="Room" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="GUIOverlay" parent="." instance=ExtResource("5_ci7qm")]
