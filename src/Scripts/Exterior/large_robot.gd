@@ -9,7 +9,6 @@ extends Node2D
 @onready var lower_left_leg := $LargeRobotLegDL
 @onready var lower_right_leg := $LargeRobotLegDR
 @onready var autoturret := $AutoTurret
-@onready var dead_sprite := $DeadSprite
 
 var target_position := Vector2.ZERO
 var distance_climbed := 0.0
