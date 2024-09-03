@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxde7ollqiokx"]
+[gd_scene load_steps=38 format=3 uid="uid://bxde7ollqiokx"]
 
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/shield_generator.gd" id="1_bvwpd"]
 [ext_resource type="Texture2D" uid="uid://dkxlgsjvsmv1c" path="res://Assets/Sprites/Exit_Sign.png" id="3_g5bje"]
@@ -7,6 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://50ofwd4uadna" path="res://Assets/SFX/Interior/Interaction/crank_up.wav" id="5_31xla"]
 [ext_resource type="AudioStream" uid="uid://40o7ae7rp0w" path="res://Assets/SFX/Interior/Interaction/crank_down.wav" id="6_0jfyw"]
 [ext_resource type="AudioStream" uid="uid://yblcx5wmorae" path="res://Assets/SFX/Interior/Interaction/Senor Pulse.wav" id="7_7qwsq"]
+[ext_resource type="PackedScene" uid="uid://biiwvkc3pyubk" path="res://src/Scripts/Statemachine/Statemachine.tscn" id="8_0gdfr"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ShieldGenerator/empty.gd" id="9_oaau6"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ShieldGenerator/press_down.gd" id="10_pjm71"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ShieldGenerator/full.gd" id="10_skw02"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ShieldGenerator/press_up.gd" id="11_pltyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37qoe"]
 atlas = ExtResource("3_g5bje")
@@ -215,6 +220,29 @@ bus = &"Interior SFX"
 [node name="AudioStreamPlayerPulsate" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_7qwsq")
 max_distance = 600.0
+
+[node name="Statemachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("8_0gdfr")]
+initial_state = NodePath("Empty")
+
+[node name="Empty" type="Node" parent="Statemachine" node_paths=PackedStringArray("down_state")]
+script = ExtResource("9_oaau6")
+down_state = NodePath("../PressDown")
+
+[node name="Full" type="Node" parent="Statemachine" node_paths=PackedStringArray("press_up_state")]
+script = ExtResource("10_skw02")
+press_up_state = NodePath("../PressUp")
+
+[node name="PressUp" type="Node" parent="Statemachine" node_paths=PackedStringArray("press_down_state", "empty_state", "full_state")]
+script = ExtResource("11_pltyl")
+press_down_state = NodePath("../PressDown")
+empty_state = NodePath("../Empty")
+full_state = NodePath("../Full")
+
+[node name="PressDown" type="Node" parent="Statemachine" node_paths=PackedStringArray("press_up_state", "empty_state", "full_state")]
+script = ExtResource("10_pjm71")
+press_up_state = NodePath("../PressUp")
+empty_state = NodePath("../Empty")
+full_state = NodePath("../Full")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d1taoe1eww1ko" path="res://Assets/Sprites/ammo_stash.png" id="1_aq6fs"]
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ammo_stash.gd" id="1_okxkk"]
-[ext_resource type="PackedScene" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_201dm"]
+[ext_resource type="PackedScene" uid="uid://bwby5isj74vfm" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_201dm"]
 [ext_resource type="AudioStream" uid="uid://8obp33p8pa2y" path="res://Assets/SFX/Interior/Interaction/Trap_Set_1.wav" id="4_n35d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmnyf"]

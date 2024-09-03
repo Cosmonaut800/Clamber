@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3hwkdlj6ljsc" path="res://Assets/Sprites/interior-tile-map.png" id="3_mfr47"]
 [ext_resource type="PackedScene" uid="uid://bnslswwkw26rj" path="res://src/Scenes/Interior/onewaycollision.tscn" id="4_jvbjx"]
 [ext_resource type="PackedScene" uid="uid://d34miuaa1edwl" path="res://src/Scenes/Interior/Door.tscn" id="7_yjh5g"]
-[ext_resource type="PackedScene" path="res://src/Scenes/Player/player_camera.tscn" id="8_hhi64"]
+[ext_resource type="PackedScene" uid="uid://3pa1x2bmvijr" path="res://src/Scenes/Player/player_camera.tscn" id="8_hhi64"]
 [ext_resource type="PackedScene" uid="uid://y1dlwg11ljk6" path="res://src/Scenes/Player/Player.tscn" id="9_6odw1"]
 [ext_resource type="PackedScene" uid="uid://cmqshwf3am01x" path="res://src/Scenes/UI/gui_overlay.tscn" id="9_8gr0a"]
 [ext_resource type="PackedScene" uid="uid://bxde7ollqiokx" path="res://src/Scenes/Interior/Activities/Shield_Generator/shield_generator.tscn" id="10_52eyh"]

@@ -8,7 +8,7 @@ var move_speed : int = 200
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var parent: Entity
+var parent
 
 func enter() -> void:
 	parent.animation_player.play(animation_name)

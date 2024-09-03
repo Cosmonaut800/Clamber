@@ -5,7 +5,7 @@ var initial_state: State
 
 var current_state: State
 
-func init(parent: Entity) -> void:
+func init(parent) -> void:
 	for child in get_children():
 		child.parent = parent
 		
