@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cej70f7oon48o"]
+[gd_scene load_steps=10 format=3 uid="uid://cej70f7oon48o"]
 
 [ext_resource type="Texture2D" uid="uid://d1taoe1eww1ko" path="res://Assets/Sprites/ammo_stash.png" id="1_aq6fs"]
 [ext_resource type="Script" path="res://src/Scripts/Interior/Activities/ammo_stash.gd" id="1_okxkk"]
 [ext_resource type="PackedScene" uid="uid://bwby5isj74vfm" path="res://src/Scenes/Misc/interaction_sign.tscn" id="3_201dm"]
 [ext_resource type="AudioStream" uid="uid://8obp33p8pa2y" path="res://Assets/SFX/Interior/Interaction/Trap_Set_1.wav" id="4_n35d6"]
+[ext_resource type="PackedScene" uid="uid://biiwvkc3pyubk" path="res://src/Scripts/Statemachine/Statemachine.tscn" id="5_dhqre"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/AmmoStash/idle.gd" id="6_2ownh"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/AmmoStash/can_pick_up.gd" id="7_ce5l2"]
+[ext_resource type="Script" path="res://src/Scripts/Interior/Activities/AmmoStash/player_has_ammo.gd" id="8_q5dgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmnyf"]
 size = Vector2(98, 43)
@@ -23,6 +27,22 @@ shape = SubResource("RectangleShape2D_mmnyf")
 [node name="AudioStreamPlayerPickUpBullets" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-8, -56)
 stream = ExtResource("4_n35d6")
+
+[node name="Statemachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_dhqre")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Statemachine" node_paths=PackedStringArray("can_pick_up_state")]
+script = ExtResource("6_2ownh")
+can_pick_up_state = NodePath("../CanPickUp")
+
+[node name="CanPickUp" type="Node" parent="Statemachine" node_paths=PackedStringArray("idle_state", "player_has_ammo_state")]
+script = ExtResource("7_ce5l2")
+idle_state = NodePath("../Idle")
+player_has_ammo_state = NodePath("../PlayerHasAmmo")
+
+[node name="PlayerHasAmmo" type="Node" parent="Statemachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("8_q5dgd")
+idle_state = NodePath("../Idle")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

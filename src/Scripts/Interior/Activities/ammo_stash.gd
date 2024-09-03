@@ -1,34 +1,31 @@
-extends Area2D
-
-@onready var player = get_parent().get_node("Player")
-@onready var interaction_sign = $InteractionSign
-@onready var pick_up_sfx = $AudioStreamPlayerPickUpBullets
-var player_in_range = false
+extends Interactable
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	player_in_range = false
+@onready var interaction_sign := $InteractionSign
+@export var turret_butt : Interactable
+#states
+#turret ammo full - player can't interact with ammo stash
+#turret ammo less than full
+	#enabled - can player can grab ammo
+	#disabled - player is already holding ammo
 
+func _ready() -> void:
+	interaction_sign.play("hover")
+	state_machine.init(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Global.ammo < Global.MAX_AMMO and not player.has_ammo:
-		interaction_sign.show()
-		interaction_sign.play("hover")
-		
-		if player_in_range and Input.is_action_just_pressed("interact"):
-			pick_up_sfx.play()
-			player.has_ammo = true
-		
-	else:
-		interaction_sign.hide()
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event)
 
+func _physics_process(delta: float) -> void:
+	state_machine.process_physics(delta)
+	
+func _process(delta: float) -> void:
+	state_machine.process_frame(delta)
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		player_in_range = true
-
+		player_there = true
 
 func _on_body_exited(body):
 	if body.name == "Player":
-		player_in_range = false
+		player_there = false

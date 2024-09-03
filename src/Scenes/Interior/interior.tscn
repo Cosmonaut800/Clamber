@@ -196,8 +196,9 @@ position = Vector2(240, -378)
 [node name="ShieldGenerator" parent="." instance=ExtResource("10_52eyh")]
 position = Vector2(687, -272)
 
-[node name="AmmoStash" parent="." instance=ExtResource("11_iiw2l")]
+[node name="AmmoStash" parent="." node_paths=PackedStringArray("turret_butt") instance=ExtResource("11_iiw2l")]
 position = Vector2(684, -32)
+turret_butt = NodePath("../TurretBut")
 
 [node name="TurretBut" parent="." instance=ExtResource("12_ika6r")]
 position = Vector2(888, -80)

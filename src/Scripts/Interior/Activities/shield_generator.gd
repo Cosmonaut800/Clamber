@@ -2,8 +2,6 @@ extends Interactable
 
 @onready var shield_generator_animation = $ShieldGenerator
 @onready var shield_pulsate = $AudioStreamPlayerPulsate
-
-var player_there := false
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
