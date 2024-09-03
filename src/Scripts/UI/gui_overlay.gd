@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var distancebar := $DistanceBar
 @onready var you_marker := $DistanceMeter/YouMarker
 @onready var danger_marker := $DistanceMeter/DangerMarker
+@onready var turret_butt := $"../TurretBut"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if player.has_ammo:
+	if turret_butt.get_ready_to_load():
 		has_ammo_sign.show()
 	else:
 		has_ammo_sign.hide()

@@ -15,11 +15,10 @@ func process_input(_event: InputEvent) -> State:
 	if Global.ammo  == Global.MAX_AMMO:
 		return idle_state
 		
-	if turret_butt.player_there and turret_butt.ready_to_load:
-		if Input.is_action_just_pressed("interact"):
-			drop_off_sfx.play()
-			Global.ammo += 30
-			if Global.ammo >= Global.MAX_AMMO:
-				Global.ammo = Global.MAX_AMMO
-			return idle_state
+	if turret_butt.player_there and Input.is_action_just_pressed("interact"):
+		drop_off_sfx.play()
+		Global.ammo += 30
+		if Global.ammo >= Global.MAX_AMMO:
+			Global.ammo = Global.MAX_AMMO
+		return idle_state
 	return null
